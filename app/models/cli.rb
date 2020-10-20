@@ -98,7 +98,7 @@ class CLI
             puts "Can you keep your level of anxiety low this evening?"
         end
         # sleep(1.5)
-        self.transportation
+        return self.transportation
     end
 
     def check_points
@@ -155,6 +155,7 @@ class CLI
     end
 
     def arrive_to_party
+        sleep(4)
         system('clear')
         puts "Hello hello!! Welcome to the party! I'm your host, Julia."
         options = ["Oooh yes please! A drink is exactly what I need!", "No, thank you. I'm not sure that's a good idea.", "Maybe! What are your drink options?"]
@@ -180,7 +181,6 @@ class CLI
             puts "Oops, the host definitely thinks I'm high maintenance. +5 Anxiety Points"
             puts "Your anxiety score is now #{@@login.anxiety_points += 5}."
         end
-        system('clear') 
         # insert pause?
         options = ["This party seems lame, I actually just want to go home.", "The weather is perfect, I'll check out the backyard."]
         selection = @@prompt.select("The host is inviting me outside...", options)
@@ -190,9 +190,6 @@ class CLI
                 # go outside method
             end     
     end
-
-
-
     
 
 
