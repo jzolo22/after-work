@@ -1,3 +1,5 @@
+require "tty-prompt"
+
 class User < ActiveRecord::Base
     has_many :login_sessions
     has_many :characters, through: :login_sessions
@@ -13,7 +15,7 @@ class User < ActiveRecord::Base
     def self.create_user_login
         username = @@prompt.ask("Set a username:")
         password = @@prompt.mask("Select a password:")
-        User.create(username: username, password: password)
+        self.create(username: username, password: password)
     end
 
 
