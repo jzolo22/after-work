@@ -157,8 +157,19 @@ class CLI
 
     def arrive_to_party
         system('clear')
-        
-        puts
+        puts "Hello hello!! Welcome to the party! I'm your host, Julia."
+        options = ["Oooh yes! A drink is exactly what I need!", "No, thank you. I'm a recovering alcoholic.", "Maybe! What are your drink options?"]
+        selection = @@prompt.select("Can I get you a drink before you head outside?", options)
+        if selection == "Oooh yes! A drink is exactly what I need!"
+            @@login.num_drinks += 1
+            if @@character.alcohol_problem
+                puts "This feels amazing, but might it be the beginning of a slippery slope...? -5 Anxiety Points"
+            else
+                puts ""
+            end
+
+        elsif
+
     end
 
 
