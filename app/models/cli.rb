@@ -133,9 +133,9 @@ class CLI
                 puts "A car passenger forgets to check the street before opening the door and you have to swerve dangerously to avoid getting hit. + 15 Anxiety Points"
                 puts "Your anxiety score is now #{@@login.anxiety_points += 15}"
             end
-            binding.pry
-        end
-        if selection == "subway" 
+            # binding.pry
+        
+        elsif selection == "subway" 
             if rand_number == 1
                 puts "well done! You made the train as the doors were closing AND you were able to get a seat! -5 anxiety points"
                 puts "Your anxiety score is now #{@@login.anxiety_points -= 5}"
@@ -143,8 +143,8 @@ class CLI
                 puts "A car passenger forgets to check the street before opening the door and you have to swerve dangerously to avoid getting hit. + 15 Anxiety Points"
                 puts "Your anxiety score is now #{@@login.anxiety_points += 15}"
             end
-        end
-        if selection == "Uber" 
+        
+        elsif selection == "Uber" 
             if rand_number == 1
                 puts "It's a beautiful day for biking and the fresh air is rejuvenating! - 10 Anxiety Points"
                 puts "Your anxiety score is now #{@@login.anxiety_points -= 10}"
