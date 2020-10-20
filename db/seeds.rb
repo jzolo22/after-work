@@ -43,7 +43,7 @@ characters = [
 #         num_drinks: "Brooklyn, NY",
 #         single: "NYC"
 #     }
-# ]
+]
 
 # Traveler.create(travelers)
 

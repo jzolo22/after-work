@@ -1,7 +1,5 @@
-require_relative 'config/environment'
-# require 'sinatra/activerecord'
+require_relative './config/environment'
 require 'sinatra/activerecord/rake'
-# require 'sinatra/activerecord/rake/activerecord_6'
 
 desc 'starts a console'
 task :console do

@@ -15,19 +15,19 @@ class CLI
     
     def login 
         if @@prompt.yes?("Do you already have a login?") 
-            User.find_user
-            # returns this error: Could not find table 'users' (ActiveRecord::StatementInvalid)
-
+            @user = User.find_user
+            # option for not being able to find user? maybe use find_or_create_by?
         else
-            User.create_user_login
-            # returns this error: Could not find table 'users' (ActiveRecord::StatementInvalid)
+            @user = User.create_user_login
         end
+        puts "Welcome #{@user.username}!"
+        self.choose_character
     end
 
     def choose_character
         # I think the "You've been invited" text should come after the login as the start of the story
         puts "You've been invited to a party at Julia's house!"
-        puts "Who will you be today?"
+        puts "Who would you like to be today?"
         # we should read up on and use the "select" TTY prompt here
         # character options
         @@character # = selected character
@@ -58,7 +58,6 @@ class CLI
         end
     end
     
-    def 
 
 
 end #end of CLI class
