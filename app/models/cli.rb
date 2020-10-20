@@ -22,6 +22,8 @@ class CLI
     #     option.choice "Create an Account"
 
     def find_user_at_login
+        
+
         if User.find_user == nil
             system('clear')
             puts "We can't seem to find that username."
@@ -33,6 +35,8 @@ class CLI
             else 
                 @@user = User.create_user_login
             end
+        else 
+            @@user = User.find_user
         end
     end
 
@@ -41,6 +45,7 @@ class CLI
         options = ["Log in", "Create a new user"]
         selection = @@prompt.select("Would you like to log in or create a new user?", options)
         if selection == "Log in" 
+
             self.find_user_at_login
             # option for not being able to find user? maybe use find_or_create_by?
         else
