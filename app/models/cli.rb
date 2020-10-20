@@ -20,7 +20,9 @@ class CLI
         else
             @user = User.create_user_login
         end
+        system('clear')
         puts "Welcome #{@user.username}!"
+        sleep(1.5)
         self.choose_character
     end
 
@@ -30,7 +32,7 @@ class CLI
         puts "Who would you like to be today?"
         # we should read up on and use the "select" TTY prompt here
         # character options
-        @@character # = selected character
+        @@character = Character.find_by(name: )
         puts "You had a really rough day at work today and you currently have #{@@character.anxiety_points}/100 anxiety points. Can you lower your anxiety this evening?"
         self.transportation
     end

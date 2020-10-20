@@ -2,7 +2,7 @@ require 'pry'
 
 
 User.destroy_all
-Character.destroy_all
+# Character.destroy_all
 Login_Session.destroy_all
 
 james = User.create(username: "james", password: "1234")
