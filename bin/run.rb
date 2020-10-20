@@ -5,4 +5,4 @@ cli = CLI.new
 
 cli.welcome
 
-puts "HELLO WORLD"
+# puts "HELLO WORLD"
