@@ -180,7 +180,15 @@ class CLI
             puts "Oops, the host definitely thinks I'm high maintenance. +5 Anxiety Points"
             puts "Your anxiety score is now #{@@login.anxiety_points += 5}."
         end
-
+        system('clear') 
+        # insert pause?
+        options = ["This party seems lame, I actually just want to go home.", "The weather is perfect, I'll check out the backyard."]
+        selection = @@prompt.select("The host is inviting me outside...", options)
+            if selection == options[0]
+                # we need an exit game method
+            elsif selection == options[1]
+                # go outside method
+            end     
     end
 
 
