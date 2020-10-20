@@ -137,18 +137,18 @@ class CLI
         
         elsif selection == "subway" 
             if rand_number == 1
-                puts "well done! You made the train as the doors were closing AND you were able to get a seat! -5 anxiety points"
+                puts "Well done! You made the train as the doors were closing and you were able to get a seat! -5 Anxiety Points"
                 puts "Your anxiety score is now #{@@login.anxiety_points -= 5}"
             else
-                puts "A car passenger forgets to check the street before opening the door and you have to swerve dangerously to avoid getting hit. + 15 Anxiety Points"
-                puts "Your anxiety score is now #{@@login.anxiety_points += 15}"
+                puts "Oh no! The train was packed and you got caught in between an Its showtime group and someone who forgot to put on deodorant that morning. + 10 Anxiety Points"
+                puts "Your anxiety score is now #{@@login.anxiety_points += 10}"
             end
         elsif selection == "Uber"
             if rand_number == 1
-                puts "It's a beautiful day for biking and the fresh air is rejuvenating! - 10 Anxiety Points"
+                puts "My Driver was a total sweetie and let me play my own tunes! -10 Anxiety Points"
                 puts "Your anxiety score is now #{@@login.anxiety_points -= 10}"
             else
-                puts "A car passenger forgets to check the street before opening the door and you have to swerve dangerously to avoid getting hit. + 15 Anxiety Points"
+                puts "My Uber driver showed up late, drove like a maniac, AND didn't have a mask on! +15 Anxiety Points"
                 puts "Your anxiety score is now #{@@login.anxiety_points += 15}"
             end
         end
