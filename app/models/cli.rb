@@ -11,9 +11,9 @@ class CLI
     def welcome 
         system('clear')
         puts "Welcome to After Work, a stress quest party at Julia's house."
-        sleep(2)
+        # sleep(2)
         puts "Will you make the right decisions? Only time will tell. 🧐" #fix later
-        sleep(2.5) # nice to have a pause here
+        # sleep(2.5) # nice to have a pause here
         self.login
     end
 
@@ -52,7 +52,7 @@ class CLI
         @@login = Login_Session.create(user_id: @@user.id)
         system('clear')
         puts "Welcome, #{@@user.username}!"
-        sleep(1.5)
+        # sleep(1.5)
         # I think we should have a few more options for the user here - like "see lowest previous score" / "start the party" /
         # 
         self.user_options
@@ -64,7 +64,7 @@ class CLI
         options = ["Get The Party Started", "Change Password", "Delete Profile"]
         selection = @@prompt.select("What would you like to do?", options)
         if selection == "Get The Party Started"
-            self.choose_character
+           return self.choose_character
         elsif selection == "Delete Profile"
             @@user.destroy
             system('clear')
@@ -74,11 +74,12 @@ class CLI
             puts "Your password has been updated."
             self.user_options
         end
-        system('clear')
+        # binding.pry
+        # system('clear')
     end
 
     def choose_character
-        sleep(1.5)
+        # sleep(1.5)
         selection = @@prompt.select("Choose your party animal", %w(Caryn someone someone_else))
         @@character = Character.find_by(name: selection)
 
@@ -96,7 +97,7 @@ class CLI
             puts "You had a relaxing day and you currently have #{@@login.anxiety_points}/100 anxiety points."
             puts "Can you keep your level of anxiety low this evening?"
         end
-        sleep(1.5)
+        # sleep(1.5)
         self.transportation
     end
 
@@ -116,15 +117,14 @@ class CLI
     # add an "leave party" option at every decision?
 
     def transportation
-        puts " "
+        system('clear')
         puts "You're heading to Brooklyn from your job in Manhattan"
         options = ["bike", "subway", "Uber"]
         selection = @@prompt.select("How do you want to get there?", options)
         rand_number = rand(1..2)
-        sleep(1.5)
+        # sleep(1.5)
         
         if selection == "bike" 
-            puts "test"
             # binding.pry
             if rand_number == 1
                 puts "It's a beautiful day for biking and the fresh air is rejuvenating! - 10 Anxiety Points"
@@ -143,8 +143,7 @@ class CLI
                 puts "A car passenger forgets to check the street before opening the door and you have to swerve dangerously to avoid getting hit. + 15 Anxiety Points"
                 puts "Your anxiety score is now #{@@login.anxiety_points += 15}"
             end
-        
-        elsif selection == "Uber" 
+        elsif selection == "Uber"
             if rand_number == 1
                 puts "It's a beautiful day for biking and the fresh air is rejuvenating! - 10 Anxiety Points"
                 puts "Your anxiety score is now #{@@login.anxiety_points -= 10}"
@@ -153,7 +152,13 @@ class CLI
                 puts "Your anxiety score is now #{@@login.anxiety_points += 15}"
             end
         end
-        # self.say_hello
+        # self.arrive_to_party
+    end
+
+    def arrive_to_party
+        system('clear')
+        
+        puts
     end
 
 
