@@ -152,23 +152,25 @@ class CLI
                 puts "Your anxiety score is now #{@@login.anxiety_points += 15}"
             end
         end
-        # self.arrive_to_party
+        self.arrive_to_party
     end
 
     def arrive_to_party
         system('clear')
         puts "Hello hello!! Welcome to the party! I'm your host, Julia."
-        options = ["Oooh yes! A drink is exactly what I need!", "No, thank you. I'm a recovering alcoholic.", "Maybe! What are your drink options?"]
+        options = ["Oooh yes please! A drink is exactly what I need!", "No, thank you. I'm not sure that's a good idea.", "Maybe! What are your drink options?"]
         selection = @@prompt.select("Can I get you a drink before you head outside?", options)
-        if selection == "Oooh yes! A drink is exactly what I need!"
+        if selection == options[0]
             @@login.num_drinks += 1
             if @@character.alcohol_problem
                 puts "This feels amazing, but might it be the beginning of a slippery slope...? -5 Anxiety Points"
             else
                 puts ""
             end
+        # elsif selection == options[1]
 
-        elsif
+        # elsif selection == "Maybe! What are your drink options?"
+        end
 
     end
 
