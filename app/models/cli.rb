@@ -6,6 +6,7 @@ class CLI
     @@prompt = TTY::Prompt.new
     @@character = nil
     @@login = nil
+    @@user = nil
     
     def welcome 
         system('clear')
@@ -20,25 +21,39 @@ class CLI
     #     option.choice "Log In"
     #     option.choice "Create an Account"
 
+    def find_user_at_login
+        if User.find_user == nil
+            system('clear')
+            puts "We can't seem to find that username."
+            puts " "
+            options = ["Try again", "Create a new user"]
+            selection = @@prompt.select("Would you like to try again or create a new user?", options)
+            if selection == "Try again"
+                self.find_user_at_login
+            else 
+                @@user = User.create_user_login
+            end
+        end
+    end
+
     
     def login 
         options = ["Log in", "Create a new user"]
         selection = @@prompt.select("Would you like to log in or create a new user?", options)
         if selection == "Log in" 
-            if User.find_user == nil
-                puts "We can't seem to find that username."
-                options = ["Try again", "Create a new user"]
-                selection = @@prompt.select("Would you like to try again or create a new user?", options)
-                @user = User.find_user
-
+            self.find_user_at_login
             # option for not being able to find user? maybe use find_or_create_by?
         else
-            @user = User.create_user_login
+            @@user = User.create_user_login
         end
-        @@login = Login_Session.create(user_id: @user.id)
+        # binding.pry
+        @@login = Login_Session.create(user_id: @@user.id)
         system('clear')
-        puts "Welcome, #{@user.username}!"
+        puts "Welcome, #{@@user.username}!"
         sleep(1.5)
+        # I think we should have a few more options for the user here - like "see lowest previous score" / "start the party" /
+        # 
+
         self.choose_character
     end
 
