@@ -29,11 +29,13 @@ class CLI
     def choose_character
         # I think the "You've been invited" text should come after the login as the start of the story
         puts "You've been invited to a party at Julia's house!"
-        puts "Who would you like to be today?"
+        selection = @@prompt.select("Who would you like to be today?", %w(Caryn someone someone_else))
         # we should read up on and use the "select" TTY prompt here
         # character options
-        @@character = Character.find_by(name: )
+        @@character = Character.find_by(name: selection)
+        system('clear')
         puts "You had a really rough day at work today and you currently have #{@@character.anxiety_points}/100 anxiety points. Can you lower your anxiety this evening?"
+        sleep(1.5)
         self.transportation
     end
 
