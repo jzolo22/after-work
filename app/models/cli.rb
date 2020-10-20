@@ -9,37 +9,50 @@ class CLI
     
     def welcome 
         system('clear')
-        puts "Welcome to After Work, an anxiety inducing quest to reduce anxiety!"
-        sleep(1.5) # nice to have a pause here
+        puts "Welcome to After Work, a stress quest party at Julia's house."
+        sleep(2)
+        puts "Will you make the right decisions? Only time will tell. 🧐" #fix later
+        sleep(2.5) # nice to have a pause here
         self.login
     end
+
+    # prompt.select("Username or Password not found.") do |option|
+    #     option.choice "Log In"
+    #     option.choice "Create an Account"
+
     
     def login 
-        puts "You've been invited to a party at Julia's house!"
-        if @@prompt.yes?("Do you already have a login?") 
-            @user = User.find_user
+        options = ["Log in", "Create a new user"]
+        selection = @@prompt.select("Would you like to log in or create a new user?", options)
+        if selection == "Log in" 
+            if User.find_user == nil
+                puts "We can't seem to find that username."
+                options = ["Try again", "Create a new user"]
+                selection = @@prompt.select("Would you like to try again or create a new user?", options)
+                @user = User.find_user
+
             # option for not being able to find user? maybe use find_or_create_by?
         else
             @user = User.create_user_login
         end
         @@login = Login_Session.create(user_id: @user.id)
         system('clear')
-        puts "Welcome #{@user.username}!"
+        puts "Welcome, #{@user.username}!"
         sleep(1.5)
         self.choose_character
     end
 
     def choose_character
-        # I think the "You've been invited" text should come after the login as the start of the story
         sleep(1.5)
-        selection = @@prompt.select("Who would you like to be today?", %w(Caryn someone someone_else))
-        # we should read up on and use the "select" TTY prompt here
-        # character options
+        selection = @@prompt.select("Choose your party animal", %w(Caryn someone someone_else))
         @@character = Character.find_by(name: selection)
 
+        # refactor the below?? setting character attributes into the login
         @@login.character_id = @@character.id
         @@login.anxiety_points = @@character.anxiety_points
         @@login.num_drinks = @@character.num_drinks
+        # refactor login above??
+        
         system('clear')
         if @@login.anxiety_points > 50
             puts "You had a really rough day at work today and you currently have #{@@login.anxiety_points}/100 anxiety points."
@@ -67,6 +80,7 @@ class CLI
 
 
     def transportation
+        puts " "
         puts "You're heading to Brooklyn from your job in Manhattan"
         selection = @@prompt.select("How do you want to get there?", %w(bike subway uber))
         #bike / subway / Uber
