@@ -152,7 +152,7 @@ class CLI
                 puts "Your anxiety score is now #{@@login.anxiety_points += 15}"
             end
         end
-        # self.arrive_to_party
+        # self.backyard_intro
     end
 
     def arrive_to_party
@@ -172,7 +172,39 @@ class CLI
 
     end
 
-
+    def backyard_intro
+        system('clear')
+        puts "DANG! What a huge backyard.. and in NYC of all places!"
+        options = ["Chat with new people?", "Grab another drink 😎?", "Help the grill master put some shrimp on?"]
+        selection = @@prompt.select("Hmmmm... what should I get into first", options)
+        rand_number = rand(1..2)
+        if selection == options[0]
+            if rand_number == 1
+                puts "Wow I just had a great conversation with a new cutie but still don't know if they were single 😬 + 5 Anxiety Points"
+                puts "Your anxiety score is now #{@@login.anxiety_points += 5}"
+            else
+                puts "Well my old co-worker made me feel like crap... apparently my old boss also hated me +15 Anxiety Points"
+                puts "Your anxiety score is now #{@@login.anxiety_points += 15}"
+            end
+        elsif selection == options[1]
+            @@login.num_drinks += 1
+            if rand_number == 1
+                puts "This week has been to long for me to NOT have another drink! - 5 Anxiety Points"
+                puts "Your anxiety score is now #{@@login.anxiety_points -= 5}"
+            else
+                puts "Everybody is drinking and I feel like a weirdo with this La Croix +15 Anxiety Points"
+                puts "Your anxiety score is now #{@@login.anxiety_points += 15}"
+            end
+        elsif selection == options[2]
+            if rand_number == 1
+                puts "Well I have never knew setting up a volleyball net was such a breeze and I got to play with the DOG! -20 Anxiety Points"
+                puts "Your anxiety score is now #{@@login.anxiety_points -= 20}"
+            else
+                puts "Dang I wasnt planning on trying out for top chef!  This ARTIST is a real Type A chef and they need me for the next hour to prepare their masterpiece +15 Anxiety Points"
+                puts "Your anxiety score is now #{@@login.anxiety_points += 15}"
+            end
+        end
+    end
 
     
 
