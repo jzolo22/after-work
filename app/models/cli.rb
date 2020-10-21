@@ -235,12 +235,14 @@ class CLI
         # insert pause?
         sleep(1.5)
         puts ""
-        options = ["The weather is perfect, I'll check out the backyard.", "This party seems lame, I actually just want to go home."]
+        options = ["The weather is perfect, I'll check out the backyard.", "I'm actually going to drop these chips off in the kitchen but I'll be right out!", "This party seems lame, I actually just want to go home."]
         # maybe we add a drink option here?
         selection = @@prompt.select("The host is inviting me outside...", options)
         if selection == options[0]
             self.backyard_intro
         elsif selection == options[1]
+          #  self.kitchen
+        elsif selection == options[2]
             self.leave_party
         end   
     end
@@ -268,6 +270,49 @@ class CLI
         end
     end
 
+    def kitchen
+        options = ["Catch up with the homies", "Sneak a bottle from the fridge", "I can head into the backyard now.", "How many drinks have I had? 🤔", "This kitchen is a mess, I'm gonna sneak out and go home before anybody else sees me."]
+        selection = @@prompt.select("", options)
+        if selection == options[0]
+            self.chat
+            self.kitchen
+        elsif selection == options[1]
+            self.drink
+            self.kitchen
+        elsif selection == options[2]
+            return self.backyard_intro
+        elsif selection == options[3]
+            self.check_num_drinks
+            self.kitchen
+        elsif selection == options[4]
+            return self.leave_party
+        end 
+
+    end
+
+    def drink
+        options = ["Beer", "Wine", "Vodka"]
+        selection = @@prompt.select("What's my poison tonight?", options)
+        if selection == options[0]
+            @@login.num_drinks += 1
+        elsif selection == options[1]
+            @@login.num_drinks += 1
+        elsif selection == options[2]
+            @@login.num_drinks += 2
+        end       
+    end
+    
+    def chat
+        rand_number = rand(1..2)
+        if rand_number == 1
+            puts "Wow I just had a great conversation with a new cutie but still don't know if they're single 😬 + 5 Anxiety Points"
+            puts "Your anxiety score is now #{@@login.anxiety_points += 5}."
+        else
+            puts "Well my old co-worker made me feel like garbage... apparently my old boss hated me. +15 Anxiety Points"
+            puts "Your anxiety score is now #{@@login.anxiety_points += 15}."
+        end
+    end
+
     def backyard_intro
         # sleep(4)
         # system('clear')
@@ -276,13 +321,7 @@ class CLI
         selection = @@prompt.select("Hmmmm... what should I get into first?", options)
         rand_number = rand(1..2)
         if selection == options[0]
-            if rand_number == 1
-                puts "Wow I just had a great conversation with a new cutie but still don't know if they're single 😬 + 5 Anxiety Points"
-                puts "Your anxiety score is now #{@@login.anxiety_points += 5}."
-            else
-                puts "Well my old co-worker made me feel like garbage... apparently my old boss hated me. +15 Anxiety Points"
-                puts "Your anxiety score is now #{@@login.anxiety_points += 15}."
-            end
+            self.chat
         elsif selection == options[1]
             if rand_number == 1
                 @@login.num_drinks += 1
