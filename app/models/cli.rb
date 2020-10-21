@@ -1,10 +1,15 @@
 require "tty-prompt"
+require "tty-font"
 require "pry"
+require "pastel"
+
+
 
 class CLI 
     
     @@prompt = TTY::Prompt.new
     @@ascii = Artii::Base.new 
+    @@pastel = Pastel.new
 
     @@character = nil
     @@login = nil
@@ -12,7 +17,7 @@ class CLI
     
     def welcome 
         system('clear')
-        puts "Welcome to"
+        puts @@pastel.yellow.bold("Welcome to")
         sleep(1.5)
         puts @@ascii.asciify("After Work")
         sleep(1.5)
