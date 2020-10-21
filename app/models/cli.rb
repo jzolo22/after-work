@@ -91,7 +91,8 @@ class CLI
         @@login.num_drinks = @@character.num_drinks
         # refactor login above??
         
-        system('clear')
+        # system('clear')
+        binding.pry
         if @@login.anxiety_points > 50
             puts "You had a really rough day at work today and you currently have #{@@login.anxiety_points}/100 anxiety points."
             puts "Can you lower your anxiety this evening?"
@@ -138,7 +139,7 @@ class CLI
                 puts "It's a beautiful day for biking and the fresh air is rejuvenating! - 10 Anxiety Points"
                 puts "Your anxiety score is now #{@@login.anxiety_points -= 10}."
             else
-                puts "A car passenger forgot to check the street before opening the door and I had to swerve dangerously to avoid getting hit. + 15 Anxiety Points"
+                puts "A car passenger forgot to check the street before opening their door and I had to swerve dangerously to avoid getting hit. + 15 Anxiety Points"
                 puts "Your anxiety score is now #{@@login.anxiety_points += 15}."
             end
         
@@ -314,9 +315,10 @@ class CLI
             puts "I'm out."
             # puts "Your anxiety score is now #{@@login.anxiety_points += 20}."
             sleep(4)
-            puts "Stepping off Julia's stoop #{@@character.name} find a $100 bill on the ground. Your phone buzzes and it is a text message" 
-            puts "from your best friend telling you how proud they are of you - Anxiety Points are back to #{@@character.anxiety_points},"
-            puts "same as when #{@@character.name} arrived."
+            puts "Stepping off Julia's stoop #{@@character.name} finds a $100 bill on the ground. #{@@character.name}s phone buzzes and it is a text message" 
+            puts "from a close friend telling them how proud they are of #{@@character.name}"
+            sleep(2)
+            puts "- Anxiety Points are back to #{@@character.anxiety_points}, same as when #{@@character.name} arrived."
             #do we build code to actually calculate the total diff in anxiety points from the beginning and add that difference back?
             #or do we save their score for the end of the game
             end
@@ -324,8 +326,10 @@ class CLI
             puts "Wow that was a ton of work but I feel great! Julia is such a great host and I am leaving feeling a huge sense of accomplishment. -15 Anxiety Points "
             puts "Your anxiety score is now #{@@login.anxiety_points -= 15}."
             sleep(4)
-            puts "Stepping off Julia's stoop #{@@character.name} find a $100 bill on the ground. Your phone buzzes and it is a text message" 
-            puts "from your best friend telling you how proud they are of you - Anxiety Points are same as when #{@@character.name} arrived."
+            puts "Stepping off Julia's stoop a delivery guy runs into #{@@character.name} with his bike while speeding to their next drop off."
+            puts "#{@@character.name} is shook up and has hot food all over them"
+            sleep(2)
+            puts "- Anxiety Points are same as when #{@@character.name} arrived."
             #do we build code to actually calculate the total diff in anxiety points from the beginning and add that difference back?
             #or do we save their score for the end of the game
         end
