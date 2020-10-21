@@ -328,7 +328,7 @@ class CLI
         rand_number = rand(1..2)
         if selection == options[0]
             self.chat
-            puts ""
+            puts "What else should I do?"
         elsif selection == options[1]
             if rand_number == 1
                 @@login.num_drinks += 1
