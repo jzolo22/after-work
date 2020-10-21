@@ -8,6 +8,7 @@ class CLI
     @@prompt = TTY::Prompt.new
     @@ascii = Artii::Base.new 
     @@pastel = Pastel.new
+    @@anx_print = @@pastel.red.bold.detach
 
     @@character = nil
     @@login = nil
@@ -15,22 +16,19 @@ class CLI
     
     def welcome 
         system('clear')
-        puts "Welcome to"
-        sleep(1.5)
-        puts @@ascii.asciify("After Work")
-        sleep(1.5)
-        puts "A stress quest party at Julia's house."
-        sleep(2)
+        puts @@pastel.bold("Welcome to")
+        # sleep(1.5)
+        puts @@pastel.yellow("#{@@ascii.asciify("After Work")}")
+        # sleep(1.5)
+        puts @@pastel.bold("A stress quest party at Julia's house.")
+        puts ""
+        # sleep(2)
         puts "Will you make the right decisions?"
-        sleep(2)
+        # sleep(2)
         puts "Only time will tell. 🧐" #fix later
-        sleep(2.5) # nice to have a pause here
+        # sleep(2.5) 
         self.login
     end
-
-    # prompt.select("Username or Password not found.") do |option|
-    #     option.choice "Log In"
-    #     option.choice "Create an Account"
 
     def find_user_at_login
         @@user = User.find_user
@@ -38,6 +36,7 @@ class CLI
             system('clear')
             puts "We can't seem to find that username."
             puts " "
+            # sleep(1)
             options = ["Try again", "Create a new user"]
             selection = @@prompt.select("Would you like to:", options)
             if selection == "Try again"
@@ -104,7 +103,7 @@ class CLI
         
         system('clear')
         if @@login.anxiety_points > 50
-            puts "Work was terrible today! My anxiety is through the roof at #{@@login.anxiety_points}/100."
+            puts "Work was terrible today! My anxiety is through the roof at " + @@anx_print.("#{@@login.anxiety_points}/100.")
             puts "Hopefully this party will help me lower my anxiety level."
         else 
             puts "Work was so fun today! I got so much done, and my stress level is nice and low at #{@@login.anxiety_points}/100."
@@ -294,6 +293,7 @@ class CLI
             puts "What's next?"
             self.kitchen
         elsif selection == options[2]
+            puts "DANG! What a huge backyard.. and in NYC of all places!"
             return self.backyard_intro
         elsif selection == options[3]
             self.check_num_drinks
@@ -317,27 +317,55 @@ class CLI
     end
     
     def chat
-        rand_number = rand(1..2)
+        rand_number = rand(1..9)
         if rand_number == 1
             puts "Wow I just had a great conversation with a new cutie but still don't know if they're single 😬 + 5 Anxiety Points"
             @@login.anxiety_points += 5
             puts "My anxiety score is now: #{@@login.anxiety_points}/100"
-        else
+        elsif rand_number == 2
             puts "Well my old co-worker made me feel like garbage... apparently my old boss hated me. +15 Anxiety Points"
             @@login.anxiety_points += 15
             puts "My anxiety score is now: #{@@login.anxiety_points}/100"
+        elsif rand_number == 3
+            puts "OMG I just lost 15 minutes of my life having that worthless conversation. +5 Anxiety Points"
+            @@login.anxiety_points += 5
+            puts "My anxiety score is now: #{@@login.anxiety_points}/100"
+        elsif rand_number == 4
+            puts "I have been looking for a new job for months and this person might actually help me get one! -20 Anxiety Points"
+            @@login.anxiety_points -= 20
+            puts "My anxiety score is now: #{@@login.anxiety_points}/100"
+        elsif rand_number == 5
+            puts "That was really weird this person started asking me way too many personal questions! +10 Anxiety Points"
+            @@login.anxiety_points += 10
+            puts "My anxiety score is now: #{@@login.anxiety_points}/100"
+        elsif rand_number == 6
+            puts "They were super sweet and that is cool they know my best friend Ebenezer! -10 Anxiety Points"
+            @@login.anxiety_points -= 10
+            puts "My anxiety score is now: #{@@login.anxiety_points}/100"
+        elsif rand_number == 7
+            puts "They were so cool and noticed my sneakers! Now I feel great! -10 Anxiety Points"
+            @@login.anxiety_points -= 10
+            puts "My anxiety score is now: #{@@login.anxiety_points}/100"
+        elsif rand_number == 8
+            puts "That was such a good intereaction they invited me to a BBQ at their house next week! -10 Anxiety Points"
+            @@login.anxiety_points -= 10
+            puts "My anxiety score is now: #{@@login.anxiety_points}/100"
+        elsif rand_number == 9
+            puts "They were very kind and read my astrological chart but I think I am now even more confused about life?!? -0 Anxiety Points"
+            puts "My anxiety score is still: #{@@login.anxiety_points}/100"
         end
     end
 
     def backyard_intro
         # sleep(4)
         # system('clear')
-        options = ["Chat with new people", "Grab a drink 😎", "Help get this party started!", "How many drinks have I had? 🤔"]
+        options = ["Chat with new people", "Grab a drink 😎", "Help get this party started!", "Hang with the DOG!", "I should see if my volleyball skills are as good as I remember.", "Looks like dinner is ready!", "Is everyone leaving?", "How many drinks have I had? 🤔"]
         selection = @@prompt.select("", options)
         rand_number = rand(1..2)
         if selection == options[0]
             self.chat
-            puts "What else should I do?"
+                puts "What else should I do?"
+            self.backyard_intro
         elsif selection == options[1]
             if rand_number == 1
                 @@login.num_drinks += 1
@@ -345,35 +373,60 @@ class CLI
                 @@login.anxiety_points -= 5
                 puts "My anxiety score is now: #{@@login.anxiety_points}/100"
             else
-                puts "Everybody is having adult beverages and I feel like a weirdo with this La Croix. +15 Anxiety Points"
+                puts "Wow somebody just handed me this nasty cocktail and now I feel like I am gonna get sick 🤢. +15 Anxiety Points"
                 @@login.anxiety_points += 15
                 puts "My anxiety score is now: #{@@login.anxiety_points}/100"
             end
+            self.backyard_intro
         elsif selection == options[2]
             if rand_number == 1
-                puts "Well I never knew setting up a volleyball net was such a breeze and I got to play with the DOG! -20 Anxiety Points"
-                @@login.anxiety_points -= 20
+                puts "Well I never knew setting up a volleyball net was such a breeze! -5 Anxiety Points"
+                @@login.anxiety_points -= 5
                 puts "My anxiety score is now: #{@@login.anxiety_points}/100"
-                if @@character.dog_allergy 
-                    sleep(3)
-                    puts ""
-                    puts "Oh no!! I forgot to take my allergy meds today and playing with the dog gave me an embarrassing rash 😫 +20 Anxiety Points"
-                    puts "Your anxiety score is now #{@@login.anxiety_points += 20}."
-                end
             else
                 puts "Dang I wasnt planning on trying out for top chef!  This ARTIST is a real Type A chef and they need me for the next hour to prepare their masterpiece. +15 Anxiety Points"
                 puts "Your anxiety score is now #{@@login.anxiety_points += 15}."
             end
-        elsif selection == options[3]
+            self.backyard_intro
+        elsif  selection == options[3]
+            if @@character.dog_allergy 
+                sleep(2)
+                puts ""
+                puts "Oh no!! I forgot to take my allergy meds today and playing with the dog gave me an embarrassing rash 😫 +20 Anxiety Points"
+                @@login.anxiety_points += 20
+                puts "Your anxiety score is now #{@@login.anxiety_points}/100."
+            else
+                puts "What a good little stinker... I feel GREAT! -10 Anxiety Points"
+                @@login.anxiety_points -= 10
+                puts "Your anxiety score is now #{@@login.anxiety_points}/100."
+            end
+            puts "What else is going on back here?"
+            self.backyard_intro
+        elsif selection == options[4]
+            if rand_number == 1
+                puts "All these home workouts I've been doing are showing! My friends are totally impressed with my skills. -10 Anxiety Points"
+                @@login.anxiety_points -= 10
+                puts "My anxiety score is now: #{@@login.anxiety_points}/100"
+            else 
+                puts "OUCH. I need to get back to the gym, I'm pretty sure I just pulled a muscle, and now my new pants are dirty. +10 Anxiety Points"
+                @@login.anxiety_points += 10
+                puts "My anxiety score is now: #{@@login.anxiety_points}/100"
+            end
+            self.backyard_intro
+        elsif selection == options[5]
+            self.food
+        elsif selection == options[6]
+            return self.the_party_starts_to_thin
+        elsif selection == options[7]
             self.check_num_drinks
+            self.backyard_intro
         end
-        self.food
     end
     
     
     def food
-        options = ["Let's eat!!", "I should totally save my calories for the alcohol and have a drink.", "I should see if my volleyball skills are as good as I remember.", "This party seems lame, I actually just want to go home."]
-        selection = @@prompt.select("Looks like dinner is ready!", options)
+        options = ["Let's eat!!", "I should totally save my calories for the alcohol and have a drink.", "This party seems lame, I actually just want to go home."]
+        selection = @@prompt.select("", options)
         rand_number = rand(1..2)
         if selection == options[0]
             if rand_number == 1
@@ -385,7 +438,7 @@ class CLI
                 @@login.anxiety_points += 10
                 puts "My anxiety score is now: #{@@login.anxiety_points}/100"
             end
-            self.the_party_starts_to_thin
+            self.backyard_intro
         elsif selection == options[1]
             if @@character.alcohol_problem && @@login.num_drinks > 3
                 puts "I need to slow down, or else things are going to spiral out of control. +15 Anxiety Points"
@@ -398,19 +451,9 @@ class CLI
             elsif @@character.alcohol_problem && @@login.num_drinks == 1
                 puts "This is the beginning of a slippery slope. 1"
             end
-            self.the_party_starts_to_thin
+            self.backyard_intro
+        
         elsif selection == options[2]
-            if rand_number == 1
-                puts "All these home workouts I've been doing are showing! My friends are totally impressed with my skills. -10 Anxiety Points"
-                @@login.anxiety_points -= 10
-                puts "My anxiety score is now: #{@@login.anxiety_points}/100"
-            else 
-                puts "OUCH. I need to get back to the gym, I'm pretty sure I just pulled a muscle, and now my new pants are dirty. +10 Anxiety Points"
-                @@login.anxiety_points += 10
-                puts "My anxiety score is now: #{@@login.anxiety_points}/100"
-            end
-            self.the_party_starts_to_thin
-        elsif selection == options[3]
             self.leave_party
         end  
     end
@@ -418,35 +461,40 @@ class CLI
     def the_party_starts_to_thin
         sleep(4)
         system('clear')
-        puts "Ok it is getting late and people are trickling out."
+        puts "Yeah it is getting late and people are trickling out."
         options = ["Let me get this cutie's number before I leave.", "I should help Julia clean up the crazy mess."]
         selection = @@prompt.select("How do I make my exit?", options)
         if selection == options[0]
-            if @@character.outgoing && @@login.num_drinks > 3 || @@character.outgoing == false
-            puts "That did not go over well... I looked like a damn FOOL. That cutie has a partner who is super chill."
-            puts "I'm out."
+            if @@character.outgoing == true 
+                puts "BAM! Not only did I get cutie's number we even set something up for next weekend!"
+            else
+                puts "That did not go over well... I looked like a damn FOOL. That cutie has a partner who is super chill."
+                puts "I'm out."
+            end
             # puts "Your anxiety score is now #{@@login.anxiety_points += 20}."
-            sleep(4)
+            sleep(2)
+            #do we build code to actually calculate the total diff in anxiety points from the beginning and add that difference back?
+            #or do we save their score for the end of the game
+        elsif selection == options[1]
+            puts "Wow that was a ton of work but I feel great! Julia is such a great host and I am leaving feeling a huge sense of accomplishment."
+            # @@login.anxiety_points -= 15
+            # puts "My anxiety score is now: #{@@login.anxiety_points}/100"
+            sleep(2)
+            #do we build code to actually calculate the total diff in anxiety points from the beginning and add that difference back?
+            #or do we save their score for the end of the game
+        end
+        if @@login.anxiety_points < @@character.anxiety_points
+            puts "Stepping off Julia's stoop a delivery guy runs into #{@@character.name} with his bike while speeding to their next drop off."
+            puts "#{@@character.name} is shook up and has hot food all over them"
+            sleep(2)
+            puts "- Anxiety Points are back to #{@@character.anxiety_points}, same as when #{@@character.name} arrived."
+        else
             puts "Stepping off Julia's stoop #{@@character.name} finds a $100 bill on the ground. #{@@character.name}s phone buzzes and it is a text message" 
             puts "from a close friend telling them how proud they are of #{@@character.name}"
             sleep(2)
             puts "- Anxiety Points are back to #{@@character.anxiety_points}, same as when #{@@character.name} arrived."
-            #do we build code to actually calculate the total diff in anxiety points from the beginning and add that difference back?
-            #or do we save their score for the end of the game
-            end
-        elsif selection == options[1]
-            puts "Wow that was a ton of work but I feel great! Julia is such a great host and I am leaving feeling a huge sense of accomplishment. -15 Anxiety Points "
-            @@login.anxiety_points -= 15
-            puts "My anxiety score is now: #{@@login.anxiety_points}/100"
-            sleep(4)
-            puts "Stepping off Julia's stoop a delivery guy runs into #{@@character.name} with his bike while speeding to their next drop off."
-            puts "#{@@character.name} is shook up and has hot food all over them"
-            sleep(2)
-            puts "- Anxiety Points are same as when #{@@character.name} arrived."
-            #do we build code to actually calculate the total diff in anxiety points from the beginning and add that difference back?
-            #or do we save their score for the end of the game
         end
-        self.leave_party
+        return
     end
 
 
