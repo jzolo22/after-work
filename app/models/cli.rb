@@ -239,9 +239,14 @@ class CLI
         # maybe we add a drink option here?
         selection = @@prompt.select("The host is inviting me outside...", options)
         if selection == options[0]
+            puts "DANG! What a huge backyard.. and in NYC of all places!"
+            puts "Hmmmm... what should I get into first?"
+            # sleep(2)
             self.backyard_intro
         elsif selection == options[1]
-          #  self.kitchen
+            puts "A dishwasher AND an espresso machine? This host must be a software engineer! 😉"
+            # sleep(2)
+            self.kitchen
         elsif selection == options[2]
             self.leave_party
         end   
@@ -258,7 +263,7 @@ class CLI
         elsif @@login.num_drinks == 3 && @@character.alcohol_problem
             puts "Things are getting out of hand."
         elsif @@login.num_drinks > 3 && @@character.alcohol_problem
-            puts "Yeeeeeehaw!! I'm gonna get on the table!!"
+            puts "Yeeeeeehaw!! I'm gonna climb on the table!!"
         elsif @@login.num_drinks == 1 && @@character.alcohol_problem == false
             puts "This party is great!"
         elsif @@login.num_drinks == 2 && @@character.alcohol_problem == false
@@ -271,13 +276,15 @@ class CLI
     end
 
     def kitchen
-        options = ["Catch up with the homies", "Sneak a bottle from the fridge", "I can head into the backyard now.", "How many drinks have I had? 🤔", "This kitchen is a mess, I'm gonna sneak out and go home before anybody else sees me."]
+        options = ["I wanna catch up with the homies", "I'm gonna sneak a bottle from the fridge", "I could use some fresh air. The backyard is calling to me.", "How many drinks have I had? 🤔", "This kitchen is a mess, I'm gonna sneak out and go home before anybody else sees me."]
         selection = @@prompt.select("", options)
         if selection == options[0]
             self.chat
+            puts "What now?"
             self.kitchen
         elsif selection == options[1]
             self.drink
+            puts "What's next?"
             self.kitchen
         elsif selection == options[2]
             return self.backyard_intro
@@ -316,12 +323,12 @@ class CLI
     def backyard_intro
         # sleep(4)
         # system('clear')
-        puts "DANG! What a huge backyard.. and in NYC of all places!"
         options = ["Chat with new people", "Grab another drink 😎", "Help get this party started!", "How many drinks have I had? 🤔"]
-        selection = @@prompt.select("Hmmmm... what should I get into first?", options)
+        selection = @@prompt.select("", options)
         rand_number = rand(1..2)
         if selection == options[0]
             self.chat
+            puts ""
         elsif selection == options[1]
             if rand_number == 1
                 @@login.num_drinks += 1
