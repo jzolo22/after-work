@@ -224,9 +224,9 @@ class CLI
         # maybe we add a drink option here?
         selection = @@prompt.select("The host is inviting me outside...", options)
         if selection == options[0]
-            self.leave_party
-        elsif selection == options[0]
             self.backyard_intro
+        elsif selection == options[1]
+            self.leave_party
         end   
     end
 
@@ -256,8 +256,6 @@ class CLI
                 puts "Your anxiety score is now #{@@login.anxiety_points += 15}."
             end
         elsif selection == options[2]
-            # Kind of confused with this one too ... they selected to help the grill master but then are potentially setting up the volleyball net
-            # I wonder if we should incorporate the dog allergy into this one too? (I wrote one in, feel free to change or take out)
             if rand_number == 1
                 puts "Well I never knew setting up a volleyball net was such a breeze and I got to play with the DOG! -20 Anxiety Points"
                 puts "Your anxiety score is now #{@@login.anxiety_points -= 20}."
@@ -272,37 +270,36 @@ class CLI
                 puts "Your anxiety score is now #{@@login.anxiety_points += 15}."
             end
         end
-        # self.food
-        self.the_party_starts_to_thin
+        self.food
     end
-
-
+    
+    
     def food
         options = ["Let's eat!!", "I should totally save my calories for the drinks and have another.", "I should see if my volleyball skills are as good as I remember.", "This party seems lame, I actually just want to go home."]
         selection = @@prompt.select("Looks like dinner is ready!", options)
         rand_number = rand(1..2)
-            if selection == options[0]
-                if rand_number == 1
-                    puts "This grilled shrimp is incredible and I was about to crash, so this dinner is coming in clutch. -10 Anxiety Points"
-                    puts "Your anxiety score is now #{@@login.anxiety_points -= 15}."
-                else 
-                    puts "Yuck, this chicken is not even cooked all the way through! I hope I don't get sick. +10 Anxiety Points"
-                    puts "Your anxiety score is now #{@@login.anxiety_points += 10}."
-                end
-            elsif selection == options[1]
-                # self.drink?
-            elsif selection == options[2]
-                if rand_number == 1
-                    puts "All these home workouts I've been doing are showing! My friends are totally impressed with my skills. -10 Anxiety Points"
-                    puts "Your anxiety score is now #{@@login.anxiety_points -= 10}."
-                else 
-                    puts "OUCH. I need to get back to the gym, I'm pretty sure I just pulled a muscle, and now my new pants are dirty. +10 Anxiety Points"
-                    puts "Your anxiety score is now #{@@login.anxiety_points += 10}."
-                end
-            elsif selection == options[3]
-                self.leave_party
-            end  
-
+        if selection == options[0]
+            if rand_number == 1
+                puts "This grilled shrimp is incredible and I was about to crash, so this dinner is coming in clutch. -10 Anxiety Points"
+                puts "Your anxiety score is now #{@@login.anxiety_points -= 15}."
+            else 
+                puts "Yuck, this chicken is not even cooked all the way through! I hope I don't get sick. +10 Anxiety Points"
+                puts "Your anxiety score is now #{@@login.anxiety_points += 10}."
+            end
+        elsif selection == options[1]
+        # self.drink?
+        elsif selection == options[2]
+            if rand_number == 1
+                puts "All these home workouts I've been doing are showing! My friends are totally impressed with my skills. -10 Anxiety Points"
+                puts "Your anxiety score is now #{@@login.anxiety_points -= 10}."
+            else 
+                puts "OUCH. I need to get back to the gym, I'm pretty sure I just pulled a muscle, and now my new pants are dirty. +10 Anxiety Points"
+                puts "Your anxiety score is now #{@@login.anxiety_points += 10}."
+            end
+        elsif selection == options[3]
+            self.leave_party
+        end  
+        self.the_party_starts_to_thin
     end
  
     def the_party_starts_to_thin
@@ -312,16 +309,17 @@ class CLI
         options = ["Let me get this cutie's number before I leave.", "I should help Julia clean up the crazy mess."]
         selection = @@prompt.select("How do I make my exit?", options)
         if selection == options[0]
-            if @@character.outgoing && @@login.num_drinks > 4 || if @@character.outgoing == false
+            if @@character.outgoing && @@login.num_drinks > 3 || @@character.outgoing == false
             puts "That did not go over well... I looked like a damn FOOL. That cutie has a partner who is super chill."
-            puts "Im out"
-            puts "Your anxiety score is now #{@@login.anxiety_points += 20}."
+            puts "I'm out."
+            # puts "Your anxiety score is now #{@@login.anxiety_points += 20}."
             sleep(4)
             puts "Stepping off Julia's stoop #{@@character.name} find a $100 bill on the ground. Your phone buzzes and it is a text message" 
             puts "from your best friend telling you how proud they are of you - Anxiety Points are back to #{@@character.anxiety_points},"
             puts "same as when #{@@character.name} arrived."
             #do we build code to actually calculate the total diff in anxiety points from the beginning and add that difference back?
             #or do we save their score for the end of the game
+            end
         elsif selection == options[1]
             puts "Wow that was a ton of work but I feel great! Julia is such a great host and I am leaving feeling a huge sense of accomplishment. -15 Anxiety Points "
             puts "Your anxiety score is now #{@@login.anxiety_points -= 15}."
@@ -332,6 +330,9 @@ class CLI
             #or do we save their score for the end of the game
         end
     end
+
+
+
 
 end #end of CLI class
 
