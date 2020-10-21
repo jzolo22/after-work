@@ -234,6 +234,13 @@ class CLI
                 puts "Your anxiety score is now #{@@login.anxiety_points += 15}."
             end
         end
+        options = ["Let's eat!!", "I should totally save my calories for the drinks and have another.", "I should see if my volleyball skills are as good as I remember." "This party seems lame, I actually just want to go home."]
+        selection = @@prompt.select("Looks like dinner is ready!", options)
+            if selection == options[1]
+                
+            elsif selection == options.last
+                # we need an exit game method
+            end  
     end
 
     
