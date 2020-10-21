@@ -128,7 +128,7 @@ class CLI
     # add an "leave party" option at every decision?
 
     def transportation
-        system('clear')
+        # system('clear')
         puts "You're heading to Brooklyn from your job in Manhattan"
         options = ["bike", "subway", "Uber"]
         selection = @@prompt.select("How do you want to get there?", options)
@@ -183,7 +183,7 @@ class CLI
     # end
 
     def arrive_to_party
-        sleep(2)
+        # sleep(2)
         puts ""
         # system('clear')
         puts "Hello hello!! Welcome to the party! I'm your host, Julia."
@@ -209,22 +209,31 @@ class CLI
         elsif selection == "Maybe! What are your drink options?"
             puts "Oops, the host definitely thinks I'm high maintenance. +5 Anxiety Points"
             puts "Your anxiety score is now #{@@login.anxiety_points += 5}."
+            options = ["Beer", "Wine", "Vodka"]
+            selection = @@prompt.select("We dont have a full bar 🙄 but... grab whatever you like out of the fridge!", options)
+            if selection == options[0]
+                @@login.num_drinks += 1
+            elsif selection == options[1]
+                @@login.num_drinks += 1
+            elsif selection == options[2]
+                @@login.num_drinks += 2
+            end       
         end
         # insert pause?
         sleep(1.5)
         puts ""
         options = ["The weather is perfect, I'll check out the backyard.", "This party seems lame, I actually just want to go home."]
         selection = @@prompt.select("The host is inviting me outside...", options)
-            if selection == options[1]
-                self.leave_party
-            elsif selection == options[0]
-                self.backyard_intro
-            end     
+        if selection == options[0]
+            self.leave_party
+        elsif selection == options[0]
+            self.backyard_intro
+        end   
     end
 
     def backyard_intro
-        sleep(4)
-        system('clear')
+        # sleep(4)
+        # system('clear')
         puts "DANG! What a huge backyard.. and in NYC of all places!"
         options = ["Chat with new people", "Grab another drink 😎", "Help get this party started!"]
         selection = @@prompt.select("Hmmmm... what should I get into first?", options)
@@ -264,7 +273,8 @@ class CLI
                 puts "Your anxiety score is now #{@@login.anxiety_points += 15}."
             end
         end
-        self.food
+        # self.food
+        self.the_party_starts_to_thin
     end
 
 
@@ -284,8 +294,8 @@ class CLI
     end
  
     def the_party_starts_to_thin
-        sleep(4)
-        system('clear')
+        # sleep(4)
+        # system('clear')
         puts "Ok it is getting late and I dunno where everyone went."
         options = ["Talk to this cutie?", "Help Julia clean up the crazy mess."]
         selection = @@prompt.select("How do I make my exit?", options)
