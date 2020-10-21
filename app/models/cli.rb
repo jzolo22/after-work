@@ -292,26 +292,20 @@ class CLI
             puts "That did not go over well... I looked like a damn FOOL that cutie has a partner who is super chill."
             puts "Im out"
             puts "Your anxiety score is now #{@@login.anxiety_points += 20}."
+            sleep(4)
+            puts "Stepping off Julia's stoop #{@@character.name} find a $100 bill on the ground. Your phone buzzes and it is a text message" 
+            puts "from your best friend telling you how proud they are of you - Anxiety Points are same as when #{@@character.name} arrived."
+            #do we build code to actually calculate the total diff in anxiety points from the beginning and add that difference back?
+            #or do we save their score for the end of the game
         elsif selection == options[1]
-            if @@character.alcohol_problem
-                puts "That was definitely the right choice. Drinking can get me into trouble.  -10 Anxiety Points"
-                puts "Your anxiety score is now #{@@login.anxiety_points -= 10}."
-            else
-                puts "There will be other opportunities for drinking later. I'd rather mingle and make some new friends now. -0 Anxiety Points"
-                puts "Your anxiety score is still #{@@login.anxiety_points}."
-            end
-        elsif selection == "Maybe! What are your drink options?"
-            puts "Oops, the host definitely thinks I'm high maintenance. +5 Anxiety Points"
-            puts "Your anxiety score is now #{@@login.anxiety_points += 5}."
+            puts "Wow that was a ton of work but I feel great! Julia is such a great host and I am leaving feeling a huge sense of accomplishment. -15 Anxiety Points "
+            puts "Your anxiety score is now #{@@login.anxiety_points -= 15}."
+            sleep(4)
+            puts "Stepping off Julia's stoop #{@@character.name} find a $100 bill on the ground. Your phone buzzes and it is a text message" 
+            puts "from your best friend telling you how proud they are of you - Anxiety Points are same as when #{@@character.name} arrived."
+            #do we build code to actually calculate the total diff in anxiety points from the beginning and add that difference back?
+            #or do we save their score for the end of the game
         end
-        # insert pause?
-        options = ["This party seems lame, I actually just want to go home.", "The weather is perfect, I'll check out the backyard."]
-        selection = @@prompt.select("The host is inviting me outside...", options)
-            if selection == options[0]
-                # we need an exit game method
-            elsif selection == options[1]
-                # go outside method
-            end     
     end
 
 end #end of CLI class
