@@ -39,14 +39,16 @@ class CLI
 
     
     def login 
-        options = ["Log in", "Create a new user"]
+        options = ["Log In", "Create a New User", "Exit the Party"]
         selection = @@prompt.select("Would you like to log in or create a new user?", options)
-        if selection == "Log in" 
+        if selection == options[0] 
 
             self.find_user_at_login
             # option for not being able to find user? maybe use find_or_create_by?
-        else
+        elsif selection == options[1]
             @@user = User.create_user_login
+        elsif selection == options[2]
+            return "Catch you at the next party!"
         end
         # binding.pry
         @@login = Login_Session.create(user_id: @@user.id)
@@ -116,7 +118,9 @@ class CLI
     end
 
     def leave_party
-        return "Hope to see you at the next party!"
+        puts "That's a shame! Hope to see you at the next party!"
+        sleep(4)
+        self.welcome
     end
 
     # add an "leave party" option at every decision?
@@ -159,8 +163,9 @@ class CLI
     end
 
     def arrive_to_party
-        sleep(4)
-        system('clear')
+        sleep(2)
+        puts ""
+        # system('clear')
         puts "Hello hello!! Welcome to the party! I'm your host, Julia."
         options = ["Oooh yes please! A drink is exactly what I need!", "No, thank you. I'm not sure that's a good idea.", "Maybe! What are your drink options?"]
         selection = @@prompt.select("Can I get you a drink before you head outside?", options)
