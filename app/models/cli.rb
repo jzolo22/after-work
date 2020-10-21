@@ -48,7 +48,9 @@ class CLI
         elsif selection == options[1]
             @@user = User.create_user_login
         elsif selection == options[2]
-            return "Catch you at the next party!"
+            puts "Catch you at the next one!"
+            sleep(1.5)
+            return
         end
         # binding.pry
         @@login = Login_Session.create(user_id: @@user.id)
