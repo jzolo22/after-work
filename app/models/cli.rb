@@ -164,6 +164,24 @@ class CLI
         self.arrive_to_party
     end
 
+
+    # def drinking
+    #     @@login.num_drinks += 1
+    #         if @@character.alcohol_problem && @@login.num_drinks == 1
+    #             puts "This feels amazing, but it might be the beginning of a slippery slope... -5 Anxiety Points"
+    #             puts "Your anxiety score is now #{@@login.anxiety_points -= 5}."
+    #         elsif @@character.alcohol_problem && @@login.num_drinks == 2
+    #             puts "Maybe I should lay off the drinking, I don't want to embarrass myself... NAH, keep 'em coming! +5 Anxiety Points"
+    #             puts "Your anxiety score is now #{@@login.anxiety_points += 5}."
+    #         elsif @@character.alcohol_problem && @@login.num_drinks == 3
+    #             puts "Alright, this is going to be the last one for sure! +15 Anxiety Points"
+    #             puts "Your anxiety score is now #{@@login.anxiety_points += 15}."
+    #         elsif @@character.alcohol_problem && @@login.num_drinks > 3
+    #             puts "Shoot... I'm a little tipsyyyyyy. +15 Anxiety Points"
+    #             puts "Your anxiety score is now #{@@login.anxiety_points += 15}."
+    #         elsif @@character.alcohol_problem == false && @login.num_drinks == 1
+    # end
+
     def arrive_to_party
         sleep(2)
         puts ""
@@ -248,14 +266,19 @@ class CLI
         options = ["Let's eat!!", "I should totally save my calories for the drinks and have another.", "I should see if my volleyball skills are as good as I remember." "This party seems lame, I actually just want to go home."]
         selection = @@prompt.select("Looks like dinner is ready!", options)
             if selection == options[0]
-                
+                self.food
             elsif selection == options[1]
-
+                self.
             elsif selection == options[2]
 
             elsif selection == options[3]
                 self.leave_party
             end  
+    end
+
+
+    def food
+
     end
 
     
