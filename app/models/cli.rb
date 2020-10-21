@@ -49,6 +49,7 @@ class CLI
             puts "Catch you at the next one!"
             sleep(1.5)
             return
+            binding.pry
         end
         # binding.pry
         @@login = Login_Session.create(user_id: @@user.id)
@@ -58,9 +59,7 @@ class CLI
         # I think we should have a few more options for the user here - like "see lowest previous score" / "start the party" /
         # 
         self.user_options
-        
     end
-
 
     def user_options
         options = ["Get The Party Started", "Change Password", "Delete Profile"]
@@ -89,6 +88,7 @@ class CLI
         @@login.character_id = @@character.id
         @@login.anxiety_points = @@character.anxiety_points
         @@login.num_drinks = @@character.num_drinks
+        # binding.pry
         # refactor login above??
         
         # system('clear')
@@ -137,10 +137,14 @@ class CLI
         if selection == "bike" 
             if rand_number == 1
                 puts "It's a beautiful day for biking and the fresh air is rejuvenating! - 10 Anxiety Points"
-                puts "Your anxiety score is now #{@@login.anxiety_points -= 10}."
+                @@login.anxiety_points -= 10
+                puts "#{@@login.anxiety_points}"
+                # binding.pry
             else
-                puts "A car passenger forgot to check the street before opening their door and I had to swerve dangerously to avoid getting hit. + 15 Anxiety Points"
-                puts "Your anxiety score is now #{@@login.anxiety_points += 15}."
+                puts "A car passenger forgot to check the street before opening the door and I had to swerve dangerously to avoid getting hit. + 15 Anxiety Points"
+                @@login.anxiety_points += 15
+                puts "#{@@login.anxiety_points}"
+                # binding.pry
             end
         
         elsif selection == "subway" 
@@ -230,30 +234,52 @@ class CLI
             self.leave_party
         end   
     end
+    
+    def check_num_drinks
+        puts "I think I've had #{@@login.num_drinks}..."
+        if @@login.num_drinks == 0
+            puts "I should relax with a beverage!"
+        elsif @@login.num_drinks == 1 && @@character.alcohol_problem 
+            puts "I probably shouldn't have much more."
+        elsif @@login.num_drinks == 2 && @@character.alcohol_problem
+            puts "I need to slow down."
+        elsif @@login.num_drinks == 3 && @@character.alcohol_problem
+            puts "Things are getting out of hand."
+        elsif @@login.num_drinks > 3 && @@character.alcohol_problem
+            puts "Yeeeeeehaw!! I'm gonna get on the table!!"
+        elsif @@login.num_drinks == 1 && @@character.alcohol_problem == false
+            puts "This party is great!"
+        elsif @@login.num_drinks == 2 && @@character.alcohol_problem == false
+            puts "I'm really going to let loose tonight."
+        elsif @@login.num_drinks == 3 && @@character.alcohol_problem == false
+            puts "Should I text my ex??"
+        elsif @@login.num_drinks > 3 && @@character.alcohol_problem == false
+            puts "Good thing I have my hangover remedies ready to go."
+        end
+    end
 
     def backyard_intro
         # sleep(4)
         # system('clear')
         puts "DANG! What a huge backyard.. and in NYC of all places!"
-        options = ["Chat with new people", "Grab another drink 😎", "Help get this party started!"]
+        options = ["Chat with new people", "Grab another drink 😎", "Help get this party started!", "How many drinks have I had? 🤔"]
         selection = @@prompt.select("Hmmmm... what should I get into first?", options)
         rand_number = rand(1..2)
         if selection == options[0]
             if rand_number == 1
-                puts "Wow I just had a great conversation with a new cutie but still don't know if they were single 😬 + 5 Anxiety Points"
+                puts "Wow I just had a great conversation with a new cutie but still don't know if they're single 😬 + 5 Anxiety Points"
                 puts "Your anxiety score is now #{@@login.anxiety_points += 5}."
             else
                 puts "Well my old co-worker made me feel like garbage... apparently my old boss hated me. +15 Anxiety Points"
                 puts "Your anxiety score is now #{@@login.anxiety_points += 15}."
             end
         elsif selection == options[1]
-            # I'm confused on this one ... they selected to have a drink above but the "else" statement implies they're not drinking I think
-            @@login.num_drinks += 1
             if rand_number == 1
+                @@login.num_drinks += 1
                 puts "This week has been too long for me to NOT have another drink! - 5 Anxiety Points"
                 puts "Your anxiety score is now #{@@login.anxiety_points -= 5}."
             else
-                puts "Everybody is drinking and I feel like a weirdo with this La Croix. +15 Anxiety Points"
+                puts "Everybody is having adult beverages and I feel like a weirdo with this La Croix. +15 Anxiety Points"
                 puts "Your anxiety score is now #{@@login.anxiety_points += 15}."
             end
         elsif selection == options[2]
@@ -270,25 +296,37 @@ class CLI
                 puts "Dang I wasnt planning on trying out for top chef!  This ARTIST is a real Type A chef and they need me for the next hour to prepare their masterpiece. +15 Anxiety Points"
                 puts "Your anxiety score is now #{@@login.anxiety_points += 15}."
             end
+        elsif selection == options[3]
+            self.check_num_drinks
         end
         self.food
     end
     
     
     def food
-        options = ["Let's eat!!", "I should totally save my calories for the drinks and have another.", "I should see if my volleyball skills are as good as I remember.", "This party seems lame, I actually just want to go home."]
+        options = ["Let's eat!!", "I should totally save my calories for the alcohol and have a drink.", "I should see if my volleyball skills are as good as I remember.", "This party seems lame, I actually just want to go home."]
         selection = @@prompt.select("Looks like dinner is ready!", options)
         rand_number = rand(1..2)
         if selection == options[0]
             if rand_number == 1
-                puts "This grilled shrimp is incredible and I was about to crash, so this dinner is coming in clutch. -10 Anxiety Points"
+                puts "The grilled shrimp is incredible and I was about to crash, so this dinner is coming in clutch. -10 Anxiety Points"
                 puts "Your anxiety score is now #{@@login.anxiety_points -= 15}."
             else 
                 puts "Yuck, this chicken is not even cooked all the way through! I hope I don't get sick. +10 Anxiety Points"
                 puts "Your anxiety score is now #{@@login.anxiety_points += 10}."
             end
+            self.the_party_starts_to_thin
         elsif selection == options[1]
-        # self.drink?
+            if @@character.alcohol_problem && @@login.num_drinks > 3
+                puts "I need to slow down, or else things are going to spiral out of control. +15 Anxiety Points"
+                puts "Your anxiety score is now #{@@login.anxiety_points +=15}."
+            elsif @@character.alcohol_problem && @@login.num_drinks.between?(2,3)
+                puts "My hangover is going to be awful tomorrow. +15 Anxiety Points."
+                puts "Your anxiety score is now #{@@login.anxiety_points +=15}."
+            elsif @@character.alcohol_problem && @@login.num_drinks == 1
+                puts "This is the beginning of a slippery slope. 1"
+            end
+            self.the_party_starts_to_thin
         elsif selection == options[2]
             if rand_number == 1
                 puts "All these home workouts I've been doing are showing! My friends are totally impressed with my skills. -10 Anxiety Points"
@@ -297,10 +335,10 @@ class CLI
                 puts "OUCH. I need to get back to the gym, I'm pretty sure I just pulled a muscle, and now my new pants are dirty. +10 Anxiety Points"
                 puts "Your anxiety score is now #{@@login.anxiety_points += 10}."
             end
+            self.the_party_starts_to_thin
         elsif selection == options[3]
             self.leave_party
         end  
-        self.the_party_starts_to_thin
     end
  
     def the_party_starts_to_thin
@@ -333,6 +371,7 @@ class CLI
             #do we build code to actually calculate the total diff in anxiety points from the beginning and add that difference back?
             #or do we save their score for the end of the game
         end
+        self.leave_party
     end
 
 
