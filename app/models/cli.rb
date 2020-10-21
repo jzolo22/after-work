@@ -197,7 +197,7 @@ class CLI
         sleep(4)
         system('clear')
         puts "DANG! What a huge backyard.. and in NYC of all places!"
-        options = ["Chat with new people", "Grab another drink 😎", "Help the grill master put some shrimp on"]
+        options = ["Chat with new people", "Grab another drink 😎", "Help get this party started!"]
         selection = @@prompt.select("Hmmmm... what should I get into first?", options)
         rand_number = rand(1..2)
         if selection == options[0]
@@ -222,7 +222,7 @@ class CLI
             # Kind of confused with this one too ... they selected to help the grill master but then are potentially setting up the volleyball net
             # I wonder if we should incorporate the dog allergy into this one too? (I wrote one in, feel free to change or take out)
             if rand_number == 1
-                puts "Well I have never knew setting up a volleyball net was such a breeze and I got to play with the DOG! -20 Anxiety Points"
+                puts "Well I never knew setting up a volleyball net was such a breeze and I got to play with the DOG! -20 Anxiety Points"
                 puts "Your anxiety score is now #{@@login.anxiety_points -= 20}."
                 if @@character.dog_allergy 
                     sleep(3)
@@ -240,18 +240,13 @@ class CLI
     def the_party_starts_to_thin
         sleep(4)
         system('clear')
-        puts "Ok it is getting late and I dunno where everyone went.  I should make the rounds before leaving."
-        options = ["Oooh yes please! A drink is exactly what I need!", "No, thank you. I'm not sure that's a good idea.", "Maybe! What are your drink options?"]
-        selection = @@prompt.select("Can I get you a drink before you head outside?", options)
+        puts "Ok it is getting late and I dunno where everyone went."
+        options = ["Talk to this cutie?", "Help Julia clean up the crazy mess."]
+        selection = @@prompt.select("How do I make my exit?", options)
         if selection == options[0]
-            @@login.num_drinks += 1
-            if @@character.alcohol_problem
-                puts "This feels amazing, but it might be the beginning of a slippery slope... -5 Anxiety Points"
-                puts "Your anxiety score is now #{@@login.anxiety_points -= 5}."
-            else
-                puts "Thank you so much! What a delicious cocktail. -10 Anxiety Points"
-                puts "Your anxiety score is now #{@@login.anxiety_points -= 10}."
-            end
+            puts "That did not go over well... I looked like a damn FOOL that cutie has a partner who is super chill."
+            puts "Im out"
+            puts "Your anxiety score is now #{@@login.anxiety_points += 20}."
         elsif selection == options[1]
             if @@character.alcohol_problem
                 puts "That was definitely the right choice. Drinking can get me into trouble.  -10 Anxiety Points"
