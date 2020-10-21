@@ -80,7 +80,7 @@ class CLI
 
     def choose_character
         # sleep(1.5)
-        selection = @@prompt.select("Choose your party animal", %w(Caryn someone someone_else))
+        selection = @@prompt.select("Choose your party animal", %w(Caryn Bob someone_else))
         @@character = Character.find_by(name: selection)
 
         # refactor the below?? setting character attributes into the login
@@ -182,11 +182,13 @@ class CLI
             puts "Your anxiety score is now #{@@login.anxiety_points += 5}."
         end
         # insert pause?
-        options = ["This party seems lame, I actually just want to go home.", "The weather is perfect, I'll check out the backyard."]
+        sleep(1.5)
+        puts ""
+        options = ["The weather is perfect, I'll check out the backyard.", "This party seems lame, I actually just want to go home."]
         selection = @@prompt.select("The host is inviting me outside...", options)
-            if selection == options[0]
+            if selection == options[1]
                 # we need an exit game method
-            elsif selection == options[1]
+            elsif selection == options[0]
                 self.backyard_intro
             end     
     end
@@ -222,6 +224,8 @@ class CLI
                 puts "Well I have never knew setting up a volleyball net was such a breeze and I got to play with the DOG! -20 Anxiety Points"
                 puts "Your anxiety score is now #{@@login.anxiety_points -= 20}."
                 if @@character.dog_allergy 
+                    sleep(3)
+                    puts ""
                     puts "Oh no!! I forgot to take my allergy meds today and playing with the dog gave me an embarrassing rash 😫 +20 Anxiety Points"
                     puts "Your anxiety score is now #{@@login.anxiety_points += 20}."
                 end
