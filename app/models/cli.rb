@@ -28,7 +28,7 @@ class CLI
             puts "We can't seem to find that username."
             puts " "
             options = ["Try again", "Create a new user"]
-            selection = @@prompt.select("Would you like to try again or create a new user?", options)
+            selection = @@prompt.select("Would you like to log in or create a new user?", options)
             if selection == "Try again"
                 self.find_user_at_login
             else 
@@ -40,7 +40,7 @@ class CLI
     
     def login 
         options = ["Log In", "Create a New User", "Exit the Party"]
-        selection = @@prompt.select("Would you like to log in or create a new user?", options)
+        selection = @@prompt.select("Would you like to log in, create a new user, or exit the party?", options)
         if selection == options[0] 
             self.find_user_at_login
         elsif selection == options[1]
@@ -268,14 +268,27 @@ class CLI
 
 
     def food
-        options = ["Let's eat!!", "I should totally save my calories for the drinks and have another.", "I should see if my volleyball skills are as good as I remember." "This party seems lame, I actually just want to go home."]
+        options = ["Let's eat!!", "I should totally save my calories for the drinks and have another.", "I should see if my volleyball skills are as good as I remember.", "This party seems lame, I actually just want to go home."]
         selection = @@prompt.select("Looks like dinner is ready!", options)
+        rand_number = rand(1..2)
             if selection == options[0]
-                
+                if rand_number == 1
+                    puts "This grilled shrimp is incredible and I was about to crash, so this dinner is coming in clutch. -10 Anxiety Points"
+                    puts "Your anxiety score is now #{@@login.anxiety_points -= 15}."
+                else 
+                    puts "Yuck, this chicken is not even cooked all the way through! I hope I don't get sick. +10 Anxiety Points"
+                    puts "Your anxiety score is now #{@@login.anxiety_points += 10}."
+                end
             elsif selection == options[1]
                 # self.drink?
             elsif selection == options[2]
-                
+                if rand_number == 1
+                    puts "All these home workouts I've been doing are showing! My friends are totally impressed with my skills. -10 Anxiety Points"
+                    puts "Your anxiety score is now #{@@login.anxiety_points -= 10}."
+                else 
+                    puts "OUCH. I need to get back to the gym, I'm pretty sure I just pulled a muscle, and now my new pants are dirty. +10 Anxiety Points"
+                    puts "Your anxiety score is now #{@@login.anxiety_points += 10}."
+                end
             elsif selection == options[3]
                 self.leave_party
             end  
