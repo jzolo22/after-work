@@ -115,6 +115,10 @@ class CLI
         end
     end
 
+    def leave_party
+        return "Hope to see you at the next party!"
+    end
+
     # add an "leave party" option at every decision?
 
     def transportation
@@ -187,7 +191,7 @@ class CLI
         options = ["The weather is perfect, I'll check out the backyard.", "This party seems lame, I actually just want to go home."]
         selection = @@prompt.select("The host is inviting me outside...", options)
             if selection == options[1]
-                # we need an exit game method
+                self.leave_party
             elsif selection == options[0]
                 self.backyard_intro
             end     
@@ -236,10 +240,14 @@ class CLI
         end
         options = ["Let's eat!!", "I should totally save my calories for the drinks and have another.", "I should see if my volleyball skills are as good as I remember." "This party seems lame, I actually just want to go home."]
         selection = @@prompt.select("Looks like dinner is ready!", options)
-            if selection == options[1]
+            if selection == options[0]
                 
-            elsif selection == options.last
-                # we need an exit game method
+            elsif selection == options[1]
+
+            elsif selection == options[2]
+
+            elsif selection == options[3]
+                self.leave_party
             end  
     end
 
