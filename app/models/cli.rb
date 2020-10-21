@@ -264,21 +264,22 @@ class CLI
                 puts "Your anxiety score is now #{@@login.anxiety_points += 15}."
             end
         end
-        options = ["Let's eat!!", "I should totally save my calories for the drinks and have another.", "I should see if my volleyball skills are as good as I remember." "This party seems lame, I actually just want to go home."]
-        selection = @@prompt.select("Looks like dinner is ready!", options)
-            if selection == options[0]
-                self.food
-            elsif selection == options[1]
-                self.
-            elsif selection == options[2]
-
-            elsif selection == options[3]
-                self.leave_party
-            end  
+        self.food
     end
 
 
     def food
+        options = ["Let's eat!!", "I should totally save my calories for the drinks and have another.", "I should see if my volleyball skills are as good as I remember." "This party seems lame, I actually just want to go home."]
+        selection = @@prompt.select("Looks like dinner is ready!", options)
+            if selection == options[0]
+                
+            elsif selection == options[1]
+                # self.drink?
+            elsif selection == options[2]
+                
+            elsif selection == options[3]
+                self.leave_party
+            end  
 
     end
  
