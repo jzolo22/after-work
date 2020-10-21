@@ -16,5 +16,5 @@ gem 'rake'
 gem 'database_cleaner'
 gem 'require_all'
 gem 'tty-prompt', '~> 0.22.0'
-
+gem 'artii'
 # 
