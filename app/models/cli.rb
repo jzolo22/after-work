@@ -42,9 +42,7 @@ class CLI
         options = ["Log In", "Create a New User", "Exit the Party"]
         selection = @@prompt.select("Would you like to log in or create a new user?", options)
         if selection == options[0] 
-
             self.find_user_at_login
-            # option for not being able to find user? maybe use find_or_create_by?
         elsif selection == options[1]
             @@user = User.create_user_login
         elsif selection == options[2]
@@ -125,7 +123,7 @@ class CLI
         self.welcome
     end
 
-    # add an "leave party" option at every decision?
+    # add a "leave party" option at every decision?
 
     def transportation
         system('clear')
@@ -214,6 +212,7 @@ class CLI
         sleep(1.5)
         puts ""
         options = ["The weather is perfect, I'll check out the backyard.", "This party seems lame, I actually just want to go home."]
+        # maybe we add a drink option here?
         selection = @@prompt.select("The host is inviting me outside...", options)
             if selection == options[1]
                 self.leave_party
@@ -295,7 +294,8 @@ class CLI
             puts "Your anxiety score is now #{@@login.anxiety_points += 20}."
             sleep(4)
             puts "Stepping off Julia's stoop #{@@character.name} find a $100 bill on the ground. Your phone buzzes and it is a text message" 
-            puts "from your best friend telling you how proud they are of you - Anxiety Points are same as when #{@@character.name} arrived."
+            puts "from your best friend telling you how proud they are of you - Anxiety Points are back to #{@@character.anxiety_points},"
+            puts "same as when #{@@character.name} arrived."
             #do we build code to actually calculate the total diff in anxiety points from the beginning and add that difference back?
             #or do we save their score for the end of the game
         elsif selection == options[1]
