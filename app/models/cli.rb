@@ -39,14 +39,18 @@ class CLI
 
     
     def login 
-        options = ["Log in", "Create a new user"]
+        options = ["Log In", "Create a New User", "Exit the Party"]
         selection = @@prompt.select("Would you like to log in or create a new user?", options)
-        if selection == "Log in" 
+        if selection == options[0] 
 
             self.find_user_at_login
             # option for not being able to find user? maybe use find_or_create_by?
-        else
+        elsif selection == options[1]
             @@user = User.create_user_login
+        elsif selection == options[2]
+            puts "Catch you at the next one!"
+            sleep(1.5)
+            return
         end
         # binding.pry
         @@login = Login_Session.create(user_id: @@user.id)
@@ -115,6 +119,12 @@ class CLI
         end
     end
 
+    def leave_party
+        puts "That's a shame! Hope to see you at the next party!"
+        sleep(4)
+        self.welcome
+    end
+
     # add an "leave party" option at every decision?
 
     def transportation
@@ -154,9 +164,28 @@ class CLI
         self.arrive_to_party
     end
 
+
+    # def drinking
+    #     @@login.num_drinks += 1
+    #         if @@character.alcohol_problem && @@login.num_drinks == 1
+    #             puts "This feels amazing, but it might be the beginning of a slippery slope... -5 Anxiety Points"
+    #             puts "Your anxiety score is now #{@@login.anxiety_points -= 5}."
+    #         elsif @@character.alcohol_problem && @@login.num_drinks == 2
+    #             puts "Maybe I should lay off the drinking, I don't want to embarrass myself... NAH, keep 'em coming! +5 Anxiety Points"
+    #             puts "Your anxiety score is now #{@@login.anxiety_points += 5}."
+    #         elsif @@character.alcohol_problem && @@login.num_drinks == 3
+    #             puts "Alright, this is going to be the last one for sure! +15 Anxiety Points"
+    #             puts "Your anxiety score is now #{@@login.anxiety_points += 15}."
+    #         elsif @@character.alcohol_problem && @@login.num_drinks > 3
+    #             puts "Shoot... I'm a little tipsyyyyyy. +15 Anxiety Points"
+    #             puts "Your anxiety score is now #{@@login.anxiety_points += 15}."
+    #         elsif @@character.alcohol_problem == false && @login.num_drinks == 1
+    # end
+
     def arrive_to_party
-        sleep(4)
-        system('clear')
+        sleep(2)
+        puts ""
+        # system('clear')
         puts "Hello hello!! Welcome to the party! I'm your host, Julia."
         options = ["Oooh yes please! A drink is exactly what I need!", "No, thank you. I'm not sure that's a good idea.", "Maybe! What are your drink options?"]
         selection = @@prompt.select("Can I get you a drink before you head outside?", options)
@@ -187,7 +216,7 @@ class CLI
         options = ["The weather is perfect, I'll check out the backyard.", "This party seems lame, I actually just want to go home."]
         selection = @@prompt.select("The host is inviting me outside...", options)
             if selection == options[1]
-                # we need an exit game method
+                self.leave_party
             elsif selection == options[0]
                 self.backyard_intro
             end     
@@ -235,6 +264,22 @@ class CLI
                 puts "Your anxiety score is now #{@@login.anxiety_points += 15}."
             end
         end
+        options = ["Let's eat!!", "I should totally save my calories for the drinks and have another.", "I should see if my volleyball skills are as good as I remember." "This party seems lame, I actually just want to go home."]
+        selection = @@prompt.select("Looks like dinner is ready!", options)
+            if selection == options[0]
+                self.food
+            elsif selection == options[1]
+                self.
+            elsif selection == options[2]
+
+            elsif selection == options[3]
+                self.leave_party
+            end  
+    end
+
+
+    def food
+
     end
  
     def the_party_starts_to_thin
