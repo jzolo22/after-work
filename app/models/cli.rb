@@ -192,6 +192,7 @@ class CLI
     end
 
     def backyard_intro
+        sleep(4)
         system('clear')
         puts "DANG! What a huge backyard.. and in NYC of all places!"
         options = ["Chat with new people?", "Grab another drink 😎?", "Help the grill master put some shrimp on?"]
@@ -224,9 +225,43 @@ class CLI
             end
         end
     end
-
-    
-
+ 
+    def the_party_starts_to_thin
+        sleep(4)
+        system('clear')
+        puts "Ok it is getting late and I dunno where everyone went.  I should make the rounds before leaving."
+        options = ["Oooh yes please! A drink is exactly what I need!", "No, thank you. I'm not sure that's a good idea.", "Maybe! What are your drink options?"]
+        selection = @@prompt.select("Can I get you a drink before you head outside?", options)
+        if selection == options[0]
+            @@login.num_drinks += 1
+            if @@character.alcohol_problem
+                puts "This feels amazing, but it might be the beginning of a slippery slope... -5 Anxiety Points"
+                puts "Your anxiety score is now #{@@login.anxiety_points -= 5}."
+            else
+                puts "Thank you so much! What a delicious cocktail. -10 Anxiety Points"
+                puts "Your anxiety score is now #{@@login.anxiety_points -= 10}."
+            end
+        elsif selection == options[1]
+            if @@character.alcohol_problem
+                puts "That was definitely the right choice. Drinking can get me into trouble.  -10 Anxiety Points"
+                puts "Your anxiety score is now #{@@login.anxiety_points -= 10}."
+            else
+                puts "There will be other opportunities for drinking later. I'd rather mingle and make some new friends now. -0 Anxiety Points"
+                puts "Your anxiety score is still #{@@login.anxiety_points}."
+            end
+        elsif selection == "Maybe! What are your drink options?"
+            puts "Oops, the host definitely thinks I'm high maintenance. +5 Anxiety Points"
+            puts "Your anxiety score is now #{@@login.anxiety_points += 5}."
+        end
+        # insert pause?
+        options = ["This party seems lame, I actually just want to go home.", "The weather is perfect, I'll check out the backyard."]
+        selection = @@prompt.select("The host is inviting me outside...", options)
+            if selection == options[0]
+                # we need an exit game method
+            elsif selection == options[1]
+                # go outside method
+            end     
+    end
 
 end #end of CLI class
 
