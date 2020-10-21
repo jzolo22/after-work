@@ -104,14 +104,14 @@ class CLI
         # refactor login above??
         
         system('clear')
-        # if @@login.anxiety_points > 50
-        #     puts "You had a really rough day at work today and you currently have #{@@login.anxiety_points}/100 anxiety points."
-        #     puts "Can you lower your anxiety this evening?"
-        # else 
-        #     puts "You had a relaxing day and you currently have #{@@login.anxiety_points}/100 anxiety points."
-        #     puts "Can you keep your level of anxiety low this evening?"
-        # end
-        # sleep(1.5)
+        if @@login.anxiety_points > 50
+            puts "Work was terrible today! My anxiety is through the roof at #{@@login.anxiety_points}/100."
+            puts "Hopefully this party will help me lower my anxiety level."
+        else 
+            puts "Work was so fun today! I got so much done, and my stress level is nice and low at #{@@login.anxiety_points}/100."
+            puts "Hopefully this party doesn't stress me out."
+        end
+        sleep(1.5)
         return self.transportation
     end
 
@@ -139,23 +139,22 @@ class CLI
 
     def transportation
         # system('clear')
-        puts "You're heading to Brooklyn from your job in Manhattan"
+        puts "The party is in Brooklyn, but my job is in SoHo."
         options = ["bike", "subway", "Uber"]
-        selection = @@prompt.select("How do you want to get there?", options)
+        selection = @@prompt.select("How should I get to the party?", options)
         rand_number = rand(1..2)
         # sleep(1.5)
         
         if selection == "bike" 
-            # if rand_number == 1
+            if rand_number == 1
                 puts "It's a beautiful day for biking and the fresh air is rejuvenating! - 10 Anxiety Points"
                 @@login.anxiety_points -= 10
-                puts "#{@@login.anxiety_points}"
+                puts "My anxiety score is now: #{@@login.anxiety_points}/100"
                 # binding.pry
             else
                 puts "A car passenger forgot to check the street before opening the door and I had to swerve dangerously to avoid getting hit. + 15 Anxiety Points"
                 @@login.anxiety_points += 15
-                puts "#{@@login.anxiety_points}"
-                # binding.pry
+                puts "My anxiety score is now: #{@@login.anxiety_points}/100"
             end
         
         elsif selection == "subway" 
