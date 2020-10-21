@@ -3,13 +3,12 @@ require "tty-font"
 require "pry"
 require "pastel"
 
-
-
 class CLI 
     
     @@prompt = TTY::Prompt.new
     @@ascii = Artii::Base.new 
     @@pastel = Pastel.new
+    @@anx_print = @@pastel.red.bold.detach
 
     @@character = nil
     @@login = nil
@@ -17,22 +16,19 @@ class CLI
     
     def welcome 
         system('clear')
-        puts @@pastel.yellow.bold("Welcome to")
-        sleep(1.5)
-        puts @@ascii.asciify("After Work")
-        sleep(1.5)
-        puts "A stress quest party at Julia's house."
-        sleep(2)
+        puts @@pastel.bold("Welcome to")
+        # sleep(1.5)
+        puts @@pastel.yellow("#{@@ascii.asciify("After Work")}")
+        # sleep(1.5)
+        puts @@pastel.bold("A stress quest party at Julia's house.")
+        puts ""
+        # sleep(2)
         puts "Will you make the right decisions?"
-        sleep(2)
+        # sleep(2)
         puts "Only time will tell. 🧐" #fix later
-        sleep(2.5) # nice to have a pause here
+        # sleep(2.5) 
         self.login
     end
-
-    # prompt.select("Username or Password not found.") do |option|
-    #     option.choice "Log In"
-    #     option.choice "Create an Account"
 
     def find_user_at_login
         @@user = User.find_user
@@ -40,6 +36,7 @@ class CLI
             system('clear')
             puts "We can't seem to find that username."
             puts " "
+            # sleep(1)
             options = ["Try again", "Create a new user"]
             selection = @@prompt.select("Would you like to:", options)
             if selection == "Try again"
@@ -106,7 +103,7 @@ class CLI
         
         system('clear')
         if @@login.anxiety_points > 50
-            puts "Work was terrible today! My anxiety is through the roof at #{@@login.anxiety_points}/100."
+            puts "Work was terrible today! My anxiety is through the roof at " + @@anx_print.("#{@@login.anxiety_points}/100.")
             puts "Hopefully this party will help me lower my anxiety level."
         else 
             puts "Work was so fun today! I got so much done, and my stress level is nice and low at #{@@login.anxiety_points}/100."
