@@ -4,16 +4,24 @@ require "pry"
 class CLI 
     
     @@prompt = TTY::Prompt.new
+    @@ascii = Artii::Base.new 
+
     @@character = nil
     @@login = nil
     @@user = nil
     
     def welcome 
         system('clear')
-        puts "Welcome to After Work, a stress quest party at Julia's house."
-        # sleep(2)
-        puts "Will you make the right decisions? Only time will tell. 🧐" #fix later
-        # sleep(2.5) # nice to have a pause here
+        puts "Welcome to"
+        sleep(1.5)
+        puts @@ascii.asciify("After Work")
+        sleep(1.5)
+        puts "A stress quest party at Julia's house."
+        sleep(2)
+        puts "Will you make the right decisions?"
+        sleep(2)
+        puts "Only time will tell. 🧐" #fix later
+        sleep(2.5) # nice to have a pause here
         self.login
     end
 
@@ -28,7 +36,7 @@ class CLI
             puts "We can't seem to find that username."
             puts " "
             options = ["Try again", "Create a new user"]
-            selection = @@prompt.select("Would you like to log in or create a new user?", options)
+            selection = @@prompt.select("Would you like to:", options)
             if selection == "Try again"
                 self.find_user_at_login
             else 
@@ -40,7 +48,7 @@ class CLI
     
     def login 
         options = ["Log In", "Create a New User", "Exit the Party"]
-        selection = @@prompt.select("Would you like to log in, create a new user, or exit the party?", options)
+        selection = @@prompt.select("Would you like to:", options)
         if selection == options[0] 
             self.find_user_at_login
         elsif selection == options[1]
