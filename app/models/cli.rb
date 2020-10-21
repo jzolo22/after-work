@@ -298,11 +298,12 @@ class CLI
     def the_party_starts_to_thin
         sleep(4)
         system('clear')
-        puts "Ok it is getting late and I dunno where everyone went."
-        options = ["Talk to this cutie?", "Help Julia clean up the crazy mess."]
+        puts "Ok it is getting late and people are trickling out."
+        options = ["Let me get this cutie's number before I leave.", "I should help Julia clean up the crazy mess."]
         selection = @@prompt.select("How do I make my exit?", options)
         if selection == options[0]
-            puts "That did not go over well... I looked like a damn FOOL that cutie has a partner who is super chill."
+            if @@character.outgoing && @@login.num_drinks > 4 || if @@character.outgoing == false
+            puts "That did not go over well... I looked like a damn FOOL. That cutie has a partner who is super chill."
             puts "Im out"
             puts "Your anxiety score is now #{@@login.anxiety_points += 20}."
             sleep(4)
