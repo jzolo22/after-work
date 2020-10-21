@@ -80,7 +80,7 @@ class CLI
 
     def choose_character
         # sleep(1.5)
-        selection = @@prompt.select("Choose your party animal", %w(Caryn someone someone_else))
+        selection = @@prompt.select("Choose your party animal", %w(Caryn Bob someone_else))
         @@character = Character.find_by(name: selection)
 
         # refactor the below?? setting character attributes into the login
@@ -182,12 +182,14 @@ class CLI
             puts "Your anxiety score is now #{@@login.anxiety_points += 5}."
         end
         # insert pause?
-        options = ["This party seems lame, I actually just want to go home.", "The weather is perfect, I'll check out the backyard."]
+        sleep(1.5)
+        puts ""
+        options = ["The weather is perfect, I'll check out the backyard.", "This party seems lame, I actually just want to go home."]
         selection = @@prompt.select("The host is inviting me outside...", options)
-            if selection == options[0]
+            if selection == options[1]
                 # we need an exit game method
-            elsif selection == options[1]
-                # go outside method
+            elsif selection == options[0]
+                self.backyard_intro
             end     
     end
 
@@ -195,33 +197,42 @@ class CLI
         sleep(4)
         system('clear')
         puts "DANG! What a huge backyard.. and in NYC of all places!"
-        options = ["Chat with new people?", "Grab another drink 😎?", "Help the grill master put some shrimp on?"]
-        selection = @@prompt.select("Hmmmm... what should I get into first", options)
+        options = ["Chat with new people", "Grab another drink 😎", "Help the grill master put some shrimp on"]
+        selection = @@prompt.select("Hmmmm... what should I get into first?", options)
         rand_number = rand(1..2)
         if selection == options[0]
             if rand_number == 1
                 puts "Wow I just had a great conversation with a new cutie but still don't know if they were single 😬 + 5 Anxiety Points"
-                puts "Your anxiety score is now #{@@login.anxiety_points += 5}"
+                puts "Your anxiety score is now #{@@login.anxiety_points += 5}."
             else
-                puts "Well my old co-worker made me feel like crap... apparently my old boss also hated me +15 Anxiety Points"
-                puts "Your anxiety score is now #{@@login.anxiety_points += 15}"
+                puts "Well my old co-worker made me feel like garbage... apparently my old boss hated me. +15 Anxiety Points"
+                puts "Your anxiety score is now #{@@login.anxiety_points += 15}."
             end
         elsif selection == options[1]
+            # I'm confused on this one ... they selected to have a drink above but the "else" statement implies they're not drinking I think
             @@login.num_drinks += 1
             if rand_number == 1
-                puts "This week has been to long for me to NOT have another drink! - 5 Anxiety Points"
-                puts "Your anxiety score is now #{@@login.anxiety_points -= 5}"
+                puts "This week has been too long for me to NOT have another drink! - 5 Anxiety Points"
+                puts "Your anxiety score is now #{@@login.anxiety_points -= 5}."
             else
-                puts "Everybody is drinking and I feel like a weirdo with this La Croix +15 Anxiety Points"
-                puts "Your anxiety score is now #{@@login.anxiety_points += 15}"
+                puts "Everybody is drinking and I feel like a weirdo with this La Croix. +15 Anxiety Points"
+                puts "Your anxiety score is now #{@@login.anxiety_points += 15}."
             end
         elsif selection == options[2]
+            # Kind of confused with this one too ... they selected to help the grill master but then are potentially setting up the volleyball net
+            # I wonder if we should incorporate the dog allergy into this one too? (I wrote one in, feel free to change or take out)
             if rand_number == 1
                 puts "Well I have never knew setting up a volleyball net was such a breeze and I got to play with the DOG! -20 Anxiety Points"
-                puts "Your anxiety score is now #{@@login.anxiety_points -= 20}"
+                puts "Your anxiety score is now #{@@login.anxiety_points -= 20}."
+                if @@character.dog_allergy 
+                    sleep(3)
+                    puts ""
+                    puts "Oh no!! I forgot to take my allergy meds today and playing with the dog gave me an embarrassing rash 😫 +20 Anxiety Points"
+                    puts "Your anxiety score is now #{@@login.anxiety_points += 20}."
+                end
             else
-                puts "Dang I wasnt planning on trying out for top chef!  This ARTIST is a real Type A chef and they need me for the next hour to prepare their masterpiece +15 Anxiety Points"
-                puts "Your anxiety score is now #{@@login.anxiety_points += 15}"
+                puts "Dang I wasnt planning on trying out for top chef!  This ARTIST is a real Type A chef and they need me for the next hour to prepare their masterpiece. +15 Anxiety Points"
+                puts "Your anxiety score is now #{@@login.anxiety_points += 15}."
             end
         end
     end
