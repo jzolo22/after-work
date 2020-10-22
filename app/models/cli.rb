@@ -546,7 +546,7 @@ class CLI
                 puts "Wow that was a ton of work but I feel great! Julia is such a great host and I am leaving feeling a huge sense of accomplishment. " + @@pastel.green("-15 Anxiety Points")
                 @@login.anxiety_points -= 15
             else 
-                puts "Wow, Julia needed more cleaning up than her apartment did. Never coming back again! " + @@pastel.green("+15 Anxiety Points")
+                puts "Wow, Julia needed more cleaning up than her apartment did. Never coming back again! " + @@pastel.red("+15 Anxiety Points")
                 @@login.anxiety_points -= 15
             end
         end
