@@ -519,12 +519,15 @@ class CLI
         end
         sleep(2)
         puts ""
-        puts "- Anxiety Points are back to #{@@character.anxiety_points}, same as when #{@@character.name} arrived."
+        puts "At the end of the day, anxiety comes from within, so... #{@@character.name}'s Anxiety Points are now back to #{@@character.anxiety_points}/100, same as when #{@@character.name} first left work."
         sleep(2)
         
         # clear screen here 
         # pause
         # mental health resource section
+        puts "While anxiety has an internal origin, managing outside stress and making smart choices is a critical part of keeping yourself as healthy as possible."
+        puts "If you've found yourself struggling with anxiety (especially during this stressful time)"
+        puts "You can visit the page below for resources in your area."
         return
     end
 
