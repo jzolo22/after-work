@@ -112,26 +112,26 @@ class CLI
             puts "Work was terrible today! My anxiety is through the roof at " + @@anx_print.("#{@@login.anxiety_points}/100.")
             puts "Hopefully this party will help me lower my anxiety level."
         else 
-            puts "Work was so fun today! I got so much done, and my stress level is nice and low at #{@@login.anxiety_points}/100."
+            puts "Work was so fun today! I got so much done, and my stress level is nice and low at " + @@pastel.green("#{@@login.anxiety_points}/100.")
             puts "Hopefully this party doesn't stress me out."
         end
         sleep(1.5)
         return self.transportation
     end
 
-    def check_points
-        puts @@login.anxiety_points
-        if @@login.anxiety_points > 70
-            puts "I'm feeling very stressed. My anxiety level is at #{@@login.anxiety_points}/100."
-            puts "I should be careful to make less stressful choices." #change text?
-        elsif @@login.anxiety_points < 30 
-            puts "I'm feeling good! My anxiety level is at #{@@login.anxiety_points}/100."
-            puts "Party on!"
-        else 
-            puts "Things are okay. My anxiety level is at #{@@login.anxiety_points}/100."
-            puts "something that we can change later"
-        end
-    end
+    # def check_points
+    #     puts @@login.anxiety_points
+    #     if @@login.anxiety_points > 70
+    #         puts "I'm feeling very stressed. My anxiety level is at #{@@login.anxiety_points}/100."
+    #         puts "I should be careful to make less stressful choices." #change text?
+    #     elsif @@login.anxiety_points < 30 
+    #         puts "I'm feeling good! My anxiety level is at #{@@login.anxiety_points}/100."
+    #         puts "Party on!"
+    #     else 
+    #         puts "Things are okay. My anxiety level is at #{@@login.anxiety_points}/100."
+    #         puts "something that we can change later"
+    #     end
+    # end
 
     def leave_party
         puts "That's a shame! Hope to see you at the next party!"
@@ -519,7 +519,8 @@ class CLI
         end
         sleep(2)
         puts ""
-        puts "At the end of the day, anxiety comes from within, so... #{@@character.name}'s Anxiety Points are now back to #{@@character.anxiety_points}/100, same as when #{@@character.name} first left work."
+        puts "At the end of the day, anxiety comes from within, so..."
+        puts "#{@@character.name}'s Anxiety Points are now back to #{@@character.anxiety_points}/100, same as when #{@@character.name} first left work."
         sleep(2)
         
         # clear screen here 
