@@ -110,7 +110,9 @@ class CLI
         system('clear')
         puts "Be aware that each of these characters are unique and have their own limitations that you should consider while making decisions at the party."
         puts "Is it possible they attended a work happy hour before the party? Maybe! 😉"
-        sleep(4)
+        sleep(8)
+        puts ""
+        # system('clear')
         if @@login.anxiety_points > 50
             puts "Work was terrible today! My anxiety is through the roof at " + @@anx_print.("#{@@login.anxiety_points}/100.")
             puts "Hopefully this party will help me lower my anxiety level."
@@ -118,7 +120,7 @@ class CLI
             puts "Work was so fun today! I got so much done, and my stress level is nice and low at " + @@pastel.green("#{@@login.anxiety_points}/100.")
             puts "Hopefully this party doesn't stress me out."
         end
-        sleep(1.5)
+        sleep(2)
         return self.transportation
         ### Maybe have some ASCII art here - party people or pretty house?
     end
