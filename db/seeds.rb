@@ -7,8 +7,10 @@ Login_Session.destroy_all
 
 james = User.create(username: "james", password: "1234")
 
-caryn = Character.create(name: "Caryn", occupation: "teacher", dog_allergy: false, outgoing: true, alcohol_problem: false, num_drinks: 0, anxiety_points: 1, single: true)
-bob = Character.create(name: "Bob", occupation: "teacher", dog_allergy: true, outgoing: false, alcohol_problem: true, num_drinks: 3, anxiety_points: 60, single: true)
+caryn = Character.create(name: "Caryn", occupation: "teacher", dog_allergy: true, outgoing: true, alcohol_problem: false, num_drinks: 2, anxiety_points: 30, single: true)
+isabelle = Character.create(name: "Isabelle", occupation: "teacher", dog_allergy: false, outgoing: true, alcohol_problem: true, num_drinks: 0, anxiety_points: 65, single: true)
+michelle = Character.create(name: "Michelle", occupation: "teacher", dog_allergy: false, outgoing: false, alcohol_problem: false, num_drinks: 1, anxiety_points: 55, single: true)
+ian = Character.create(name: "Ian", occupation: "teacher", dog_allergy: true, outgoing: true, alcohol_problem: true, num_drinks: 0, anxiety_points: 40, single: true)
 
 # log_in1 = Login_Session.create(character_id: caryn.id, user_id: james.id, anxiety_points: caryn.anxiety_points, num_drinks: caryn.num_drinks)
 
