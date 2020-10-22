@@ -146,7 +146,7 @@ class CLI
         system('clear')
         puts "The party is in Brooklyn, but my job is in SoHo."
         puts ""
-        options = ["bike", "subway", "Uber"]
+        options = ["Bike", "Subway", "Uber"]
         selection = @@prompt.select("How should I get to the party?", options)
         rand_number = rand(1..2)
         sleep(1.5)
@@ -201,9 +201,9 @@ class CLI
                 sleep(2)
                 @@login.anxiety_points -= 5
             else
+                system('clear')
                 puts "Thank you so much! What a delicious cocktail. -10 Anxiety Points"
                 sleep(2)
-                system('clear')
                 @@login.anxiety_points -= 10
             end
             # puts "My anxiety score is: #{@@login.anxiety_points}/100"
@@ -278,15 +278,15 @@ class CLI
     end
 
     def kitchen
-        options = ["I wanna catch up with the homies", "I'm gonna sneak a bottle from the fridge", "I could use some fresh air. The backyard is calling to me.", "How many drinks have I had? 🤔", "This kitchen is a mess, I'm gonna sneak out and go home before anybody else sees me."]
-        selection = @@prompt.select("", options, per_page: 5)
+        options = ["I wanna catch up with the homies", "I'm gonna sneak a bottle from the fridge", "I could use some fresh air. The backyard is calling to me.", "How many drinks have I had? 🤔", "I gotta use the bathroom BAD", "This kitchen is a mess, I'm gonna sneak out and go home before anybody else sees me."]
+        selection = @@prompt.select("", options, per_page: 6)
         if selection == options[0]
             self.chat
-            puts "What now?"
+            puts "Dang Julia knows tons of people."
             self.kitchen
         elsif selection == options[1]
             self.drink
-            puts "What's next?"
+            puts "Ug she even has one of those fancy smart fridges."
             self.kitchen
         elsif selection == options[2]
             puts "DANG! What a huge backyard.. and in NYC of all places!"
@@ -295,9 +295,33 @@ class CLI
             self.check_num_drinks
             self.kitchen
         elsif selection == options[4]
+            self.bathroom
+            puts "Julia has a really nice apartment."
+            self.kitchen
+        elsif selection == options[5]
             return self.leave_party
         end 
+    end
 
+    def bathroom
+        rand_number = rand(1..3)
+        if rand_number == 1
+            puts "Julia caught me snooping through her cabinets and now I feel like a creep 😬 + 10 Anxiety Points"
+            @@login.anxiety_points += 10
+            # puts "My anxiety score is: #{@@login.anxiety_points}/100"
+        elsif rand_number == 2
+            puts "Wow I really needed to go and feel 1000 times better.  I am ready to party! -10 Anxiety Points"
+            @@login.anxiety_points -= 10
+            # puts "My anxiety score is: #{@@login.anxiety_points}/100"
+        elsif rand_number == 3
+            puts "It feels like a spa in here I need to ask Julia where she got those candles! -5 Anxiety Points"
+            @@login.anxiety_points -= 5
+            # puts "My anxiety score is: #{@@login.anxiety_points}/100"
+        end
+        puts "My anxiety score is: #{@@login.anxiety_points}/100"
+        puts ""
+        sleep(2)
+        puts ""
     end
 
     def drink
@@ -363,13 +387,14 @@ class CLI
         system('clear')
         puts "My anxiety score is: #{@@login.anxiety_points}/100"
         puts ""
-        options = ["Chat with new people", "Grab a drink 😎", "Help get this party started!", "Hang with the DOG!", "I should see if my volleyball skills are as good as I remember.", "Looks like dinner is ready!", "Is everyone leaving?", "How many drinks have I had? 🤔"]
+        options = ["Head back into the Kitchen", "Grab a drink 😎", "Help get this party started!", "Hang with the DOG!", "I should see if my volleyball skills are as good as I remember.", "Looks like dinner is ready!", "Is everyone leaving?", "How many drinks have I had? 🤔"]
         selection = @@prompt.select("", options, per_page: 8)
         rand_number = rand(1..2)
         if selection == options[0]
-            self.chat
-                puts "What else should I do?"
-            self.backyard_intro
+        #     self.chat
+        #         puts "What else should I do?"
+        #     self.backyard_intro
+              self.kitchen
         elsif selection == options[1]
             if rand_number == 1
                 @@login.num_drinks += 1
@@ -529,6 +554,7 @@ class CLI
         puts "While anxiety has an internal origin, managing outside stress and making smart choices is a critical part of keeping yourself as healthy as possible."
         puts "If you've found yourself struggling with anxiety (especially during this stressful time)"
         puts "You can visit the page below for resources in your area."
+        puts "http"
         return
     end
 
