@@ -165,7 +165,7 @@ class CLI
                 # binding.pry
             else
                 # binding.pry
-                puts "A car passenger forgot to check the street before opening the door and I had to swerve dangerously to avoid getting hit " + @@pastel.red("+15 Anxiety Points")
+                puts "A car passenger forgot to check the street before opening the door and I had to swerve dangerously to avoid getting hit. " + @@pastel.red("+15 Anxiety Points")
                 @@login.anxiety_points += 15
             end
             # puts "My anxiety score is: #{@@login.anxiety_points}/100"
@@ -174,7 +174,7 @@ class CLI
                 puts "I made the train as the doors were closing AND I was able to get a seat! " + @@pastel.green("-5 Anxiety Points")
                 @@login.anxiety_points -= 5
             else
-                puts "The train was packed and I got caught in between an \"It's Showtime!\" group and someone who forgot to put on deodorant this morning. + 10 Anxiety Points"
+                puts "The train was packed and I got caught in between an \"It's Showtime!\" group and someone who forgot to put on deodorant this morning. " + @@pastel.red("+10 Anxiety Points")
                 @@login.anxiety_points += 15
             end
             # puts "My anxiety score is: #{@@login.anxiety_points}/100"
@@ -183,7 +183,7 @@ class CLI
                 puts "My driver was a total sweetie and let me play my own tunes! " + @@pastel.green("-10 Anxiety Points")
                 @@login.anxiety_points -= 10
             else
-                puts "My Uber driver showed up late, drove like a maniac, AND didn't have a mask on! +15 Anxiety Points"
+                puts "My Uber driver showed up late, drove like a maniac, AND didn't have a mask on! " + @@pastel.red("+15 Anxiety Points")
                 @@login.anxiety_points += 15
             end
         end
@@ -225,7 +225,7 @@ class CLI
             end
             # puts "My anxiety score is: #{@@login.anxiety_points}/100"
         elsif selection == "Maybe! What are your drink options?"
-            puts "Oops, the host definitely thinks I'm high maintenance. +5 Anxiety Points"
+            puts "Oops, the host definitely thinks I'm high maintenance. " + @@pastel.red("+5 Anxiety Points")
             sleep(2)
             @@login.anxiety_points += 5
             # puts "My anxiety score is: #{@@login.anxiety_points}/100"
@@ -322,7 +322,7 @@ class CLI
         system('clear')
         rand_number = rand(1..3)
         if rand_number == 1
-            puts "Julia caught me snooping through her cabinets and now I feel like a creep 😬 + 10 Anxiety Points"
+            puts "Julia caught me snooping through her cabinets and now I feel like a creep 😬  " + @@pastel.red("+10 Anxiety Points")
             @@login.anxiety_points += 10
             # puts "My anxiety score is: #{@@login.anxiety_points}/100"
         elsif rand_number == 2
@@ -360,15 +360,15 @@ class CLI
         puts ""
         rand_number = rand(1..9)
         if rand_number == 1
-            puts "Wow I just had a great conversation with a new cutie but still don't know if they're single 😬 + 5 Anxiety Points"
+            puts "Wow I just had a great conversation with a new cutie but still don't know if they're single 😬  " + @@pastel.red("+5 Anxiety Points")
             @@login.anxiety_points += 5
             # puts "My anxiety score is: #{@@login.anxiety_points}/100"
         elsif rand_number == 2
-            puts "Well my old co-worker made me feel like garbage... apparently my old boss hated me. +15 Anxiety Points"
+            puts "Well my old co-worker made me feel like garbage... apparently my old boss hated me. " + @@pastel.red("+15 Anxiety Points")
             @@login.anxiety_points += 15
             # puts "My anxiety score is: #{@@login.anxiety_points}/100"
         elsif rand_number == 3
-            puts "OMG I just lost 15 minutes of my life having that worthless conversation. +5 Anxiety Points"
+            puts "OMG I just lost 15 minutes of my life having that worthless conversation. " + @@pastel.red("+5 Anxiety Points")
             @@login.anxiety_points += 5
             # puts "My anxiety score is: #{@@login.anxiety_points}/100"
         elsif rand_number == 4
@@ -376,7 +376,7 @@ class CLI
             @@login.anxiety_points -= 20
             # puts "My anxiety score is: #{@@login.anxiety_points}/100"
         elsif rand_number == 5
-            puts "That was really weird this person started asking me way too many personal questions! +10 Anxiety Points"
+            puts "That was really weird this person started asking me way too many personal questions! " + @@pastel.red("+10 Anxiety Points")
             @@login.anxiety_points += 10
             # puts "My anxiety score is: #{@@login.anxiety_points}/100"
         elsif rand_number == 6
@@ -421,7 +421,7 @@ class CLI
                 # puts "My anxiety score is: #{@@login.anxiety_points}/100"
             else
                 @@login.num_drinks += 1
-                puts "Wow somebody just handed me this nasty cocktail and now I feel like I am gonna get sick 🤢. +15 Anxiety Points"
+                puts "Wow somebody just handed me this nasty cocktail and now I feel like I am gonna get sick 🤢. " + @@pastel.red("+15 Anxiety Points")
                 @@login.anxiety_points += 15
                 # puts "My anxiety score is: #{@@login.anxiety_points}/100"
             end
@@ -436,7 +436,7 @@ class CLI
                 sleep(2)
                 puts "Dang I wasnt planning on trying out for top chef!"
                 puts "This ARTIST is a real Type A chef and they need me for the next hour to prepare their masterpiece."
-                puts "+15 Anxiety Points"
+                puts @@pastel.red("+15 Anxiety Points")
                 @@login.anxiety_points += 15
                 sleep(2.5)
             end
@@ -447,7 +447,7 @@ class CLI
             if @@character.dog_allergy 
                 sleep(2)
                 puts ""
-                puts "Oh no!! I forgot to take my allergy meds today and playing with the dog gave me an embarrassing rash 😫 +20 Anxiety Points"
+                puts "Oh no!! I forgot to take my allergy meds today and playing with the dog gave me an embarrassing rash 😫  " + @@pastel.red("+20 Anxiety Points")
                 @@login.anxiety_points += 20
             else
                 puts "What a good little stinker... I feel GREAT! " @@pastel.green("-10 Anxiety Points")
@@ -463,7 +463,7 @@ class CLI
                 puts "All these home workouts I've been doing are showing! My friends are totally impressed with my skills. " + @@pastel.green("-10 Anxiety Points")
                 @@login.anxiety_points -= 10
             else 
-                puts "OUCH. I need to get back to the gym, I'm pretty sure I just pulled a muscle, and now my new pants are dirty. +10 Anxiety Points"
+                puts "OUCH. I need to get back to the gym, I'm pretty sure I just pulled a muscle, and now my new pants are dirty. " + @@pastel.red("+10 Anxiety Points")
                 @@login.anxiety_points += 10
             end
             # puts "My anxiety score is: #{@@login.anxiety_points}/100"
@@ -492,7 +492,7 @@ class CLI
                 @@login.anxiety_points -= 15
                 puts "Now I can keep going all night!"
             else 
-                puts "Yuck, this chicken is not even cooked all the way through! I hope I don't get sick. +10 Anxiety Points"
+                puts "Yuck, this chicken is not even cooked all the way through! I hope I don't get sick. " + @@pastel.red("+10 Anxiety Points")
                 @@login.anxiety_points += 10
                 # sleep(2)
                 puts "Well... the party must go on."
@@ -501,13 +501,13 @@ class CLI
             self.backyard_intro
         elsif selection == options[1]
             if @@character.alcohol_problem && @@login.num_drinks > 3
-                puts "I need to slow down, or else things are going to spiral out of control. +15 Anxiety Points"
+                puts "I need to slow down, or else things are going to spiral out of control. " + @@pastel.red("+15 Anxiety Points")
                 @@login.anxiety_points += 15
             elsif @@character.alcohol_problem && @@login.num_drinks.between?(2,3)
-                puts "My hangover is going to be awful tomorrow. +15 Anxiety Points."
+                puts "My hangover is going to be awful tomorrow. " + @@pastel.red("+10 Anxiety Points")
                 @@login.anxiety_points += 10
             elsif @@character.alcohol_problem && @@login.num_drinks == 1
-                puts "This is the beginning of a slippery slope."
+                puts "This is the beginning of a slippery slope. " + @@pastel.red("+5 Anxiety Points")"
                 @@login.anxiety_points += 5
             elsif @@character.alcohol_problem == false && @@login.num_drinks.between?(2,3)
                 puts "I am feeling fluffy! " + @@pastel.green("-5 Anxiety Points")
@@ -537,7 +537,7 @@ class CLI
                 puts "BAM! Not only did I get cutie's number we even set something up for next weekend! " + @@pastel.green("-15 Anxiety Points")
                 @@login.anxiety_points -=15
             else
-                puts "That did not go over well... I looked like a damn FOOL. That cutie has a partner who is super chill."
+                puts "That did not go over well... I looked like a damn FOOL. That cutie has a partner who is super chill. " + @@pastel.red("+15 Anxiety Points")
                 puts "I'm out."
                 @@login.anxiety_points +=15
             end
