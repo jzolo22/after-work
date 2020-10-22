@@ -3,6 +3,8 @@ require "tty-font"
 require "pry"
 require "pastel"
 
+# keep track of how many choices they've made and put them into the party winding down method?
+
 class CLI 
     
     @@prompt = TTY::Prompt.new
@@ -17,16 +19,16 @@ class CLI
     def welcome 
         system('clear')
         puts @@pastel.bold("Welcome to")
-        # sleep(1.5)
+        sleep(1.5)
         puts @@pastel.yellow("#{@@ascii.asciify("After Work")}")
-        # sleep(1.5)
+        sleep(1.5)
         puts @@pastel.bold("A stress quest party at Julia's house.")
         puts ""
-        # sleep(2)
+        sleep(2)
         puts "Will you make the right decisions?"
-        # sleep(2)
+        sleep(2)
         puts "Only time will tell. 🧐" #fix later
-        # sleep(2.5) 
+        sleep(2.5) 
         self.login
     end
 
