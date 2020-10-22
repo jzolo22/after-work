@@ -224,7 +224,7 @@ class CLI
                 puts "My anxiety score is now: #{@@login.anxiety_points}/100"
             else
                 puts "There will be other opportunities for drinking later. I'd rather mingle and make some new friends now. -0 Anxiety Points"
-                puts "Your anxiety score is still #{@@login.anxiety_points}."
+                puts "Your anxiety score is still #{@@login.anxiety_points}/100."
             end
         elsif selection == "Maybe! What are your drink options?"
             puts "Oops, the host definitely thinks I'm high maintenance. +5 Anxiety Points"
@@ -244,7 +244,6 @@ class CLI
         sleep(1.5)
         puts ""
         options = ["The weather is perfect, I'll check out the backyard.", "I'm actually going to drop these chips off in the kitchen but I'll be right out!", "This party seems lame, I actually just want to go home."]
-        # maybe we add a drink option here?
         selection = @@prompt.select("The host is inviting me outside...", options)
         if selection == options[0]
             puts "DANG! What a huge backyard.. and in NYC of all places!"
@@ -262,7 +261,9 @@ class CLI
     
     def check_num_drinks
         puts "I think I've had #{@@login.num_drinks}..."
-        if @@login.num_drinks == 0
+        if @@login.num_drinks == 0 && @@character.alcohol_problem
+            puts "Maybe I should keep it that way!"
+        elsif @@login.num_drinks == 0 && @@character.alcohol_problem == false
             puts "I should relax with a beverage!"
         elsif @@login.num_drinks == 1 && @@character.alcohol_problem 
             puts "I probably shouldn't have much more."
@@ -285,7 +286,7 @@ class CLI
 
     def kitchen
         options = ["I wanna catch up with the homies", "I'm gonna sneak a bottle from the fridge", "I could use some fresh air. The backyard is calling to me.", "How many drinks have I had? 🤔", "This kitchen is a mess, I'm gonna sneak out and go home before anybody else sees me."]
-        selection = @@prompt.select("", options)
+        selection = @@prompt.select("", options, per_page: 5)
         if selection == options[0]
             self.chat
             puts "What now?"
