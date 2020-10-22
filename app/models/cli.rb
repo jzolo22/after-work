@@ -387,7 +387,8 @@ class CLI
                 puts "My anxiety score is now: #{@@login.anxiety_points}/100"
             else
                 puts "Dang I wasnt planning on trying out for top chef!  This ARTIST is a real Type A chef and they need me for the next hour to prepare their masterpiece. +15 Anxiety Points"
-                puts "Your anxiety score is now #{@@login.anxiety_points += 15}."
+                @@login.anxiety_points += 15
+                puts "Your anxiety score is now #{@@login.anxiety_points}/100."
             end
             self.backyard_intro
         elsif  selection == options[3]
