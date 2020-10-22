@@ -34,7 +34,7 @@ class CLI
         self.login
     end
 
-
+    
     #pauses here are good!
     def find_user_at_login
         @@user = User.find_user
@@ -44,7 +44,7 @@ class CLI
             puts " "
             # sleep(1)
             options = ["Try again", "Create a new user"]
-            selection = @@prompt.select("Would you like to:", options)
+            selection = @@prompt.select("Would you like to:", options, show_help: :never)
             if selection == "Try again"
                 self.find_user_at_login
             else 

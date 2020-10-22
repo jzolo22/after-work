@@ -8,7 +8,7 @@ class User < ActiveRecord::Base
 
     def self.find_user
         username = @@prompt.ask("What is your username?")
-        password = @@prompt.mask("What is your password?")
+        password = @@prompt.mask("What is your password?"
         self.find_by(username: username, password: password)
     end
 
