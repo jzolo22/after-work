@@ -362,7 +362,7 @@ class CLI
         # sleep(4)
         # system('clear')
         options = ["Chat with new people", "Grab a drink 😎", "Help get this party started!", "Hang with the DOG!", "I should see if my volleyball skills are as good as I remember.", "Looks like dinner is ready!", "Is everyone leaving?", "How many drinks have I had? 🤔"]
-        selection = @@prompt.select("", options)
+        selection = @@prompt.select("", options, per_page: 8)
         rand_number = rand(1..2)
         if selection == options[0]
             self.chat
