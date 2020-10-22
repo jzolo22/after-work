@@ -108,10 +108,11 @@ class CLI
         # refactor login above??
         
         system('clear')
-        puts "Be aware that each of these characters are unique and have their own limitations that you should consider while making decisions at the party."
-        puts "Is it possible they attended a work happy hour before the party? Maybe! 😉"
+        puts @@pastel.italic("Be aware that each of these characters are unique and have their own limitations that you should consider while making decisions at the party.")
+        puts @@pastel.italic("Is it possible they attended a work happy hour before the party? Maybe!") + " 😉"
         sleep(8)
         puts ""
+        puts @@pastel.bold("#{@@character.name}:")
         # system('clear')
         if @@login.anxiety_points > 50
             puts "Work was terrible today! My anxiety is through the roof at " + @@anx_print.("#{@@login.anxiety_points}/100.")
@@ -196,10 +197,10 @@ class CLI
         system('clear')
         puts "My anxiety score is: #{@@login.anxiety_points}/100"
         puts ""
-        puts "Hello hello!! Welcome to the party, #{@@character.name}! I'm your host, Julia."
+        puts @@pastel.italic("Hello hello!! Welcome to the party, #{@@character.name}! I'm your host, Julia.")
         puts ""
         options = ["Oooh yes please! A drink is exactly what I need!", "No, thank you. I'm not sure that's a good idea.", "Maybe! What are your drink options?"]
-        selection = @@prompt.select("Can I get you a drink before you head outside?", options)
+        selection = @@prompt.select(@@pastel.italic("Can I get you a drink before you head outside?"), options)
         if selection == options[0]
             @@login.num_drinks += 1
             if @@character.alcohol_problem
@@ -228,8 +229,8 @@ class CLI
             sleep(2)
             @@login.anxiety_points += 5
             # puts "My anxiety score is: #{@@login.anxiety_points}/100"
-            options = ["Beer", "Wine", "Vodka", "Forget it I only drink Johnny Walker Blue"]
-            selection = @@prompt.select("We dont have a full bar 🙄 but... grab whatever you like out of the fridge!", options)
+            options = ["Beer", "Wine", "Vodka", "Forget it, I only drink Johnny Walker Blue"]
+            selection = @@prompt.select(@@pastel.italic("We dont have a full bar 🙄 but... grab whatever you like out of the fridge!"), options)
             if selection == options[0]
                 @@login.num_drinks += 1
             elsif selection == options[1]
@@ -261,31 +262,32 @@ class CLI
     end
     
     def check_num_drinks
-        puts "I think I've had #{@@login.num_drinks}..."
-        if @@login.num_drinks == 0 && @@character.alcohol_problem
-            puts "Maybe I should keep it that way!"
-        elsif @@login.num_drinks == 0 && @@character.alcohol_problem == false
-            puts "I should relax with a beverage!"
-        elsif @@login.num_drinks == 1 && @@character.alcohol_problem 
-            puts "I probably shouldn't have much more."
-        elsif @@login.num_drinks == 2 && @@character.alcohol_problem
-            puts "I need to slow down."
-        elsif @@login.num_drinks == 3 && @@character.alcohol_problem
-            puts "Things are getting out of hand."
-        elsif @@login.num_drinks > 3 && @@character.alcohol_problem
-            puts "Yeeeeeehaw!! I'm gonna climb on the table!!"
-        elsif @@login.num_drinks == 1 && @@character.alcohol_problem == false
-            puts "This party is great!"
-        elsif @@login.num_drinks == 2 && @@character.alcohol_problem == false
-            puts "I'm really going to let loose tonight."
-        elsif @@login.num_drinks == 3 && @@character.alcohol_problem == false
-            puts "Should I text my ex??"
-        elsif @@login.num_drinks > 3 && @@character.alcohol_problem == false
-            puts "Good thing I have my hangover remedies ready to go."
-        end
+        puts "I think I've had #{@@login.num_drinks}."
+        # if @@login.num_drinks == 0 && @@character.alcohol_problem
+        #     puts "Maybe I should keep it that way!"
+        # elsif @@login.num_drinks == 0 && @@character.alcohol_problem == false
+        #     puts "I should relax with a beverage!"
+        # elsif @@login.num_drinks == 1 && @@character.alcohol_problem 
+        #     puts "I probably shouldn't have much more."
+        # elsif @@login.num_drinks == 2 && @@character.alcohol_problem
+        #     puts "I need to slow down."
+        # elsif @@login.num_drinks == 3 && @@character.alcohol_problem
+        #     puts "Things are getting out of hand."
+        # elsif @@login.num_drinks > 3 && @@character.alcohol_problem
+        #     puts "Yeeeeeehaw!! I'm gonna climb on the table!!"
+        # elsif @@login.num_drinks == 1 && @@character.alcohol_problem == false
+        #     puts "This party is great!"
+        # elsif @@login.num_drinks == 2 && @@character.alcohol_problem == false
+        #     puts "I'm really going to let loose tonight."
+        # elsif @@login.num_drinks == 3 && @@character.alcohol_problem == false
+        #     puts "Should I text my ex??"
+        # elsif @@login.num_drinks > 3 && @@character.alcohol_problem == false
+        #     puts "Good thing I have my hangover remedies ready to go."
+        # end
     end
 
     def kitchen
+        sleep(2)
         options = ["I wanna catch up with the homies", "I'm gonna sneak a bottle from the fridge", "I could use some fresh air. The backyard is calling to me.", "How many drinks have I had? 🤔", "I gotta use the bathroom BAD", "This kitchen is a mess, I'm gonna sneak out and go home before anybody else sees me."]
         selection = @@prompt.select("", options, per_page: 6)
         if selection == options[0]
@@ -294,7 +296,7 @@ class CLI
             self.kitchen
         elsif selection == options[1]
             self.drink
-            puts "Ug she even has one of those fancy smart fridges."
+            puts "Ugh she even has one of those fancy smart fridges."
             sleep(2)
             system('clear')
             puts "My anxiety score is: #{@@login.anxiety_points}/100"
@@ -399,7 +401,7 @@ class CLI
     end
 
     def backyard_intro
-        sleep(4)
+        sleep(3)
         system('clear')
         puts "My anxiety score is: #{@@login.anxiety_points}/100"
         puts ""
@@ -523,7 +525,7 @@ class CLI
     end
  
     def the_party_starts_to_thin
-        sleep(4)
+        sleep(2)
         system('clear')
         puts "My anxiety score is: #{@@login.anxiety_points}/100"
         puts ""
@@ -532,47 +534,59 @@ class CLI
         selection = @@prompt.select("How do I make my exit?", options)
         if selection == options[0]
             if @@character.outgoing == true 
-                puts "BAM! Not only did I get cutie's number we even set something up for next weekend!"
-                # @@login.anxiety_points -=15
+                puts "BAM! Not only did I get cutie's number we even set something up for next weekend! -15 Anxiety Points"
+                @@login.anxiety_points -=15
             else
                 puts "That did not go over well... I looked like a damn FOOL. That cutie has a partner who is super chill."
                 puts "I'm out."
+                @@login.anxiety_points +=15
             end
-            # puts "Your anxiety score is now #{@@login.anxiety_points += 20}."
-            #do we build code to actually calculate the total diff in anxiety points from the beginning and add that difference back?
-            #or do we save their score for the end of the game
         elsif selection == options[1]
-            puts "Wow that was a ton of work but I feel great! Julia is such a great host and I am leaving feeling a huge sense of accomplishment."
-            # @@login.anxiety_points -= 15
-            # puts "My anxiety score is now: #{@@login.anxiety_points}/100"
-            # sleep(2)
-            #do we build code to actually calculate the total diff in anxiety points from the beginning and add that difference back?
-            #or do we save their score for the end of the game
+            if @@character.outgoing
+                puts "Wow that was a ton of work but I feel great! Julia is such a great host and I am leaving feeling a huge sense of accomplishment. -15 Anxiety Points"
+                @@login.anxiety_points -= 15
+            else 
+                puts "Wow, Julia needed more cleaning up than her apartment did. Never coming back again! +15 Anxiety Points"
+                @@login.anxiety_points -= 15
+            end
         end
-        sleep(3)
+        puts "My anxiety score is: #{@@login.anxiety_points}/100"
+        sleep(4)
         system('clear')
 
-        if @@login.anxiety_points < @@character.anxiety_points
-            puts "Stepping off Julia's stoop a delivery guy runs into #{@@character.name} with his bike while speeding to their next drop off."
-            puts "#{@@character.name} is shook up and has hot food all over them"
-        else
-            puts "Stepping off Julia's stoop #{@@character.name} finds a $100 bill on the ground. #{@@character.name}s phone buzzes and it is a text message" 
-            puts "from a close friend telling them how proud they are of #{@@character.name}"
-        end
-        sleep(2)
+        # if @@login.anxiety_points < @@character.anxiety_points
+        #     puts @@pastel.italic("Stepping off Julia's stoop a delivery guy runs into #{@@character.name} with his bike while speeding to their next drop off.")
+        #     puts @@pastel.italic("#{@@character.name} is shook up and has hot food all over them")
+        # else
+        #     puts @@pastel.italic("Stepping off Julia's stoop #{@@character.name} finds a $100 bill on the ground. #{@@character.name}s phone buzzes and it is a text message" )
+        #     puts @@pastel.italic("from a close friend telling them how proud they are of #{@@character.name}")
+        # end
+        puts "My anxiety score is: #{@@login.anxiety_points}/100"
         puts ""
-        puts "At the end of the day, anxiety comes from within, so..."
-        puts "#{@@character.name}'s Anxiety Points are now back to #{@@character.anxiety_points}/100, same as when #{@@character.name} first left work."
-        sleep(2)
-        
+        puts @@pastel.italic("At the end of the day, anxiety comes from within, so...")
+        sleep(6)
+        system('clear')
+        puts @@pastel.italic("#{@@character.name}'s Anxiety Points are now back to #{@@character.anxiety_points}/100, same as when #{@@character.name} first left work.")
+        sleep(4)
+        puts ""
+        puts ""
         # clear screen here 
         # pause
         # mental health resource section
-        puts "While anxiety has an internal origin, managing outside stress and making smart choices is a critical part of keeping yourself as healthy as possible."
-        puts "If you've found yourself struggling with anxiety (especially during this stressful time)"
-        puts "You can visit the page below for resources in your area."
-        puts "http"
-        return
+        puts @@pastel.italic("While anxiety has an internal origin, managing outside stress and making smart choices is a critical part of keeping yourself as healthy as possible.")
+        puts @@pastel.italic("If you've found yourself struggling with anxiety (especially during this stressful time)")
+        puts @@pastel.italic("you can visit the page below for resources in your area.")
+        # puts @@pastel.italic("https://findtreatment.samhsa.gov/locator")
+        puts ""
+        puts ""
+        options = ["Exit", "Mental Health Resource Map"]
+        selection = @@prompt.select("", options)
+            if selection == options[0]
+                return
+            elsif selection == options[1]
+                puts @@pastel.italic("https://findtreatment.samhsa.gov/locator")
+            end
+        # return
     end
 
 
