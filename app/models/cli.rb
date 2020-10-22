@@ -7,7 +7,7 @@ require "pastel"
 
 class CLI 
     
-    @@prompt = TTY::Prompt.new
+    @@prompt = TTY::Prompt.new(active_color: :magenta )
     @@ascii = Artii::Base.new 
     @@pastel = Pastel.new
     @@anx_print = @@pastel.red.bold.detach
