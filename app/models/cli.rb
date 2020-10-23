@@ -527,7 +527,7 @@ class CLI
     def the_party_starts_to_thin
         sleep(2)
         system('clear')
-        puts "My anxiety score is: #{@@login.anxiety_points}/100"
+        puts @@pastel.bold("My anxiety score is: #{@@login.anxiety_points}/100")
         puts ""
         puts "Yeah, it is getting late and people are trickling out."
         options = ["Let me get this cutie's number before I leave.", "I should help Julia clean up the crazy mess."]
