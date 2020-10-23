@@ -1,7 +1,7 @@
 # After Work 
 
 # Description 
-  - This social user  is intended to bring attention to the serious topic of mental health in a lighthearted way
+  - This social user is intended to bring attention to the serious topic of mental health in a lighthearted way
 
 
 
