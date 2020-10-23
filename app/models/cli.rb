@@ -20,7 +20,7 @@ class CLI
         system('clear')
         puts @@pastel.bold("Welcome to")
         sleep(1.5)
-        puts @@pastel.yellow("#{@@ascii.asciify("After Work")}")
+        puts @@pastel.magenta("#{@@ascii.asciify("After Work")}")
         sleep(1.5)
         puts @@pastel.bold("A stress quest party at Julia's house.")
         puts ""
