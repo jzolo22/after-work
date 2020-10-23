@@ -1,11 +1,4 @@
-# frozen_string_literal: true
 source "https://rubygems.org"
-
-# gem "sinatra-activerecord"
-# gem "sqlite3"
-# gem "pry"
-# gem "require_all"
-
 
 gem 'pry'
 gem 'rspec'
@@ -19,6 +12,3 @@ gem 'tty-prompt', '~> 0.22.0'
 gem 'artii', '~> 2.1', '>= 2.1.2'
 gem 'tty-font'
 gem "pastel"
-
-
-# 

@@ -18,5 +18,4 @@ class User < ActiveRecord::Base
         self.create(username: username, password: password)
     end
 
-
 end
