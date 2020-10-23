@@ -6,8 +6,8 @@ require "pastel"
 # keep track of how many choices they've made and put them into the party winding down method?
 
 class CLI 
-    
-    @@prompt = TTY::Prompt.new(active_color: :magenta )
+    notice = Pastel.new.bold.detach
+    @@prompt = TTY::Prompt.new(active_color: notice )
     @@ascii = Artii::Base.new 
     @@pastel = Pastel.new
     @@anx_print = @@pastel.red.bold.detach
@@ -195,7 +195,7 @@ class CLI
         sleep(2)
         puts ""
         system('clear')
-        puts "My anxiety score is: #{@@login.anxiety_points}/100"
+        puts @@pastel.bold("My anxiety score is: #{@@login.anxiety_points}/100")
         puts ""
         puts @@pastel.italic("Hello hello!! Welcome to the party, #{@@character.name}! I'm your host, Julia.")
         puts ""
@@ -243,7 +243,7 @@ class CLI
         end
         sleep(1.5)
         system('clear')
-        puts "My anxiety score is: #{@@login.anxiety_points}/100"
+        puts @@pastel.bold("My anxiety score is: #{@@login.anxiety_points}/100")
         puts ""
         options = ["The weather is perfect, I'll check out the backyard.", "I'm actually going to drop these chips off in the kitchen but I'll be right out!", "This party seems lame, I actually just want to go home."]
         selection = @@prompt.select("The host is inviting me outside...", options)
@@ -299,7 +299,7 @@ class CLI
             puts "Ugh she even has one of those fancy smart fridges."
             sleep(2)
             system('clear')
-            puts "My anxiety score is: #{@@login.anxiety_points}/100"
+            puts @@pastel.bold("My anxiety score is: #{@@login.anxiety_points}/100")
             self.kitchen
         elsif selection == options[2]
             system('clear')
@@ -336,7 +336,7 @@ class CLI
         end
         sleep(3)
         system('clear')
-        puts "My anxiety score is: #{@@login.anxiety_points}/100"
+        puts @@pastel.bold("My anxiety score is: #{@@login.anxiety_points}/100")
         puts ""
     end
 
@@ -395,7 +395,7 @@ class CLI
             puts "They were very kind and read my astrological chart but I think I am now even more confused about life?!? -0 Anxiety Points"
             # puts "My anxiety score is still: #{@@login.anxiety_points}/100"
         end
-        puts "My anxiety score is: #{@@login.anxiety_points}/100"
+        puts @@pastel.bold("My anxiety score is: #{@@login.anxiety_points}/100")
         puts ""
         sleep(2)
     end
@@ -403,7 +403,7 @@ class CLI
     def backyard_intro
         sleep(3)
         system('clear')
-        puts "My anxiety score is: #{@@login.anxiety_points}/100"
+        puts @@pastel.bold("My anxiety score is: #{@@login.anxiety_points}/100")
         puts ""
         options = ["Head back into the Kitchen", "Grab a drink 😎", "Help get this party started!", "Hang with the DOG!", "I should see if my volleyball skills are as good as I remember.", "Looks like dinner is ready!", "Is everyone leaving?", "How many drinks have I had? 🤔"]
         selection = @@prompt.select("", options, per_page: 8)
@@ -550,7 +550,7 @@ class CLI
                 @@login.anxiety_points -= 15
             end
         end
-        puts "My anxiety score is: #{@@login.anxiety_points}/100"
+        puts @@pastel.bold("My anxiety score is: #{@@login.anxiety_points}/100")
         sleep(4)
         system('clear')
 
@@ -561,7 +561,7 @@ class CLI
         #     puts @@pastel.italic("Stepping off Julia's stoop #{@@character.name} finds a $100 bill on the ground. #{@@character.name}s phone buzzes and it is a text message" )
         #     puts @@pastel.italic("from a close friend telling them how proud they are of #{@@character.name}")
         # end
-        puts "My anxiety score is: #{@@login.anxiety_points}/100"
+        puts @@pastel.bold("My anxiety score is: #{@@login.anxiety_points}/100")
         puts ""
         puts @@pastel.italic("At the end of the day, anxiety comes from within, so...")
         sleep(6)
