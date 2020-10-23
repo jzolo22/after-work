@@ -20,17 +20,17 @@ class CLI
     def welcome  
         system('clear')
         puts @@pastel.bold("Welcome to")
-        # sleep(1.5)
+        sleep(1.5)
         puts @@pastel.yellow("#{@@ascii.asciify("After Work")}")
-        # sleep(1.5)
+        sleep(1.5)
         puts @@pastel.bold("A stress quest party at Julia's house.")
         puts ""
-        # sleep(2)
+        sleep(2)
         puts "Will you make the right decisions?"
-        # sleep(2)
+        sleep(2)
         puts "Only time will tell. 🧐" #fix later
         puts ""
-        # sleep(2) 
+        sleep(2) 
         self.login
     end
 
@@ -42,7 +42,7 @@ class CLI
             system('clear')
             puts "We can't seem to find that username."
             puts " "
-            # sleep(1)
+            sleep(1)
             options = ["Try again", "Create a new user"]
             selection = @@prompt.select("Would you like to:", options, show_help: :never)
             if selection == "Try again"
@@ -582,16 +582,11 @@ class CLI
         options = ["Exit", "Mental Health Resource Map"]
         selection = @@prompt.select("", options)
             if selection == options[0]
-                return
-            elsif selection == options[1]
                 puts @@pastel.italic("https://findtreatment.samhsa.gov/locator")
+            elsif selection == options[1]
+                return
             end
-        # return
     end
-
-
-
-
 end #end of CLI class
 
 
