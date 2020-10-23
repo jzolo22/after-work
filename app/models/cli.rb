@@ -110,7 +110,7 @@ class CLI
         system('clear')
         puts @@pastel.italic("Be aware that each of these characters are unique and have their own limitations that you should consider while making decisions at the party.")
         puts @@pastel.italic("Is it possible they attended a work happy hour before the party? Maybe!") + " 😉"
-        sleep(8)
+        sleep(7)
         puts ""
         puts @@pastel.bold("#{@@character.name}:")
         # system('clear')
@@ -187,7 +187,7 @@ class CLI
                 @@login.anxiety_points += 15
             end
         end
-        sleep(2)
+        sleep(2.5)
         self.arrive_to_party
     end
     
@@ -500,6 +500,7 @@ class CLI
             # puts "My anxiety score is: #{@@login.anxiety_points}/100"
             self.backyard_intro
         elsif selection == options[1]
+            @@login.num_drinks += 1
             if @@character.alcohol_problem && @@login.num_drinks > 3
                 puts "I need to slow down, or else things are going to spiral out of control. " + @@pastel.red("+15 Anxiety Points")
                 @@login.anxiety_points += 15
@@ -533,6 +534,7 @@ class CLI
         options = ["Let me get this cutie's number before I leave.", "I should help Julia clean up the crazy mess."]
         selection = @@prompt.select("How do I make my exit?", options)
         if selection == options[0]
+            system('clear')
             if @@character.outgoing == true 
                 puts "BAM! Not only did I get cutie's number we even set something up for next weekend! " + @@pastel.green("-15 Anxiety Points")
                 @@login.anxiety_points -=15
@@ -542,6 +544,7 @@ class CLI
                 @@login.anxiety_points +=15
             end
         elsif selection == options[1]
+            system('clear')
             if @@character.outgoing
                 puts "Wow that was a ton of work but I feel great! Julia is such a great host and I am leaving feeling a huge sense of accomplishment. " + @@pastel.green("-15 Anxiety Points")
                 @@login.anxiety_points -= 15
@@ -578,11 +581,11 @@ class CLI
         puts @@pastel.italic("you can visit the page below for resources in your area.")
         # puts @@pastel.italic("https://findtreatment.samhsa.gov/locator")
         puts ""
-        puts ""
         options = ["Mental Health Resource Map", "Exit"]
         selection = @@prompt.select("", options)
             if selection == options[0]
                 puts @@pastel.italic("https://findtreatment.samhsa.gov/locator")
+                puts ""
             elsif selection == options[1]
                 return
             end
