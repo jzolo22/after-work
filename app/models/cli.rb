@@ -579,7 +579,7 @@ class CLI
         # puts @@pastel.italic("https://findtreatment.samhsa.gov/locator")
         puts ""
         puts ""
-        options = ["Exit", "Mental Health Resource Map"]
+        options = ["Mental Health Resource Map", "Exit"]
         selection = @@prompt.select("", options)
             if selection == options[0]
                 puts @@pastel.italic("https://findtreatment.samhsa.gov/locator")
