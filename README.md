@@ -1,12 +1,24 @@
-# After Work 
+# AFTER WORK #
+
 
 # Description 
-  - This social user is intended to bring attention to the serious topic of mental health in a lighthearted way
-
-
-
   
-<!-- 1. Fork and clone this repository. -->
+  After Work is a CLI application in which the user experiences a party through a built-in character, bringing attention to the serious topic of mental health in a lighthearted way. A party is an environment someone might turn to for relieving anxiety, however the ultimate goal is to master anxiety within oneself. The application is focused on decision making, and the repercussions of those decisions given a character's unique attributes. Those attributes not only make us unique, they guide us in dealing with and approaching our own mental health. 
+
+
+# Install Instructions
+
+1. Fork and clone this repository.
+2. Run 'bundle install'
+3. Run 'rake db:seed'
+4. In order to start the program in the CLI, run 'ruby bin/run.rb'
+
+
+# Contrubutor's Guide
+
+
+
+
 <!-- 2. Build your application. Make sure to commit early and commit often. Commit messages should be meaningful (clearly describe what you're doing in the commit) and accurate (there should be nothing in the commit that doesn't match the description in the commit message). Good rule of thumb is to commit every 3-7 mins of actual coding time. Most of your commits should have under 15 lines of code and a 2 line commit is perfectly acceptable. -->
 3. Make sure to create a good README.md with a short description, install instructions, a contributor's guide and a link to the license for your code.
 <!-- 4. Make sure your project checks off each of the above requirements. -->
