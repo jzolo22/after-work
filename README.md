@@ -3,7 +3,7 @@
 
 # Description 
   
-  After Work is a CLI application in which the user experiences a party through a built-in character, bringing attention to the serious topic of mental health in a lighthearted way. A party is an environment someone might turn to for relieving anxiety, however the ultimate goal is to master anxiety within oneself. The application is focused on decision making, and the repercussions of those decisions given a character's unique attributes. Those attributes not only make us unique, they guide us in dealing with and approaching our own mental health. 
+  After Work is a CLI application in which the user experiences a party through a built-in character, bringing attention to the serious topic of mental health in a lighthearted way. A party is an environment someone might turn to for relieving anxiety, however the ultimate goal is to master anxiety within oneself. The application is focused on decision making, and the repercussions of those decisions given a character's unique attributes. We all have attributes that not only make us unique, they guide us in dealing with and approaching our own mental health. 
 
 
 # Install Instructions
